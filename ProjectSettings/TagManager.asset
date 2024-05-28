@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - PlayerMainCamera
+  - PlayerComponent
+  - PlayerCollider
+  - SolidObject
+  - PlayerAnimator
+  - PlayerFeet
+  - PlayerRotation
+  - Dialogue window
+  - LocalizationService
+  - EventSystem
+  - DiscordIntegrator
+  - DiscordActivityChanger
+  - DiscordReportSender
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Character
+  - Camera Collider
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ui
+    uniqueID: 3139907345
+    locked: 0
+  - name: DialogueCharacter
+    uniqueID: 626125553
+    locked: 0
+  - name: DialogueWindow
+    uniqueID: 2040464665
+    locked: 0
