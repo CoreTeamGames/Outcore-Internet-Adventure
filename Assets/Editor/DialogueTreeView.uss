@@ -1,0 +1,22 @@
+<div style="width: 100%; height: 100%; position: relative">
+    <div style="width: 372px; height: 284px; left: 0px; top: 0px; position: absolute">
+        <div style="width: 372px; height: 9px; left: 0px; top: 59px; position: absolute; background: white; border-radius: 5px"></div>
+        <div style="width: 163px; height: 9px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 5px"></div>
+        <div style="width: 372px; height: 9px; left: 0px; top: 186px; position: absolute; background: white; border-radius: 4px"></div>
+        <div style="width: 372px; height: 9px; left: 0px; top: 275px; position: absolute; background: white; border-radius: 4px"></div>
+        <div style="width: 9px; height: 284px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 4px"></div>
+        <div style="width: 9px; height: 98px; left: 363px; top: 186px; position: absolute; background: white; border-radius: 4px"></div>
+        <div style="width: 181px; height: 93px; left: 9px; top: 68px; position: absolute; text-align: right; color: white; font-size: 96px; font-family: Inter; font-weight: 400; word-wrap: break-word">032</div>
+        <div style="width: 141px; height: 93px; left: 231px; top: 68px; position: absolute; color: white; font-size: 64px; font-family: Inter; font-weight: 400; word-wrap: break-word">320</div>
+        <div style="width: 154px; height: 50px; left: 9px; top: 9px; position: absolute; color: white; font-size: 48px; font-family: Inter; font-weight: 400; word-wrap: break-word">MP 40</div>
+        <div style="width: 101.79px; height: 0px; left: 195px; top: 177px; position: absolute; transform: rotate(-79.24deg); transform-origin: 0 0; border: 9px white solid"></div>
+    </div>
+    <div style="width: 354px; height: 80px; left: 9px; top: 194px; position: absolute">
+        <div style="width: 354px; height: 80px; left: 0px; top: 0px; position: absolute; background: #24FF00; border: 6px #1BC000 solid"></div>
+        <div style="width: 180px; height: 63px; left: 7px; top: 8px; position: absolute">
+            <div style="width: 110px; height: 63px; left: 70px; top: 0px; position: absolute; color: white; font-size: 64px; font-family: Inter; font-weight: 400; word-wrap: break-word">100</div>
+            <div style="width: 20px; height: 62.43px; left: 20px; top: 0.45px; position: absolute; background: white; border-radius: 5px"></div>
+            <div style="width: 20.81px; height: 60px; left: 0px; top: 42.06px; position: absolute; transform: rotate(-90deg); transform-origin: 0 0; background: white; border-radius: 5px"></div>
+        </div>
+    </div>
+</div>
