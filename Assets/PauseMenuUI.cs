@@ -38,6 +38,10 @@ namespace OutcoreInternetAdventure.UI
         {
             _system.SetSelectedGameObject(_selected);
         }
+        public void SelectObject(GameObject gameObject)
+        {
+            _system.SetSelectedGameObject(gameObject);
+        }
         void SelectButton()
         {
             _selected = _system.currentSelectedGameObject;

@@ -53,13 +53,14 @@
     <UnityVersion>2019.4.31f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\DiscordSDK\ActivityManager.cs" />
-    <Compile Include="Assets\Plugins\DiscordSDK\Constants.cs" />
-    <Compile Include="Assets\Plugins\DiscordSDK\Core.cs" />
-    <Compile Include="Assets\Plugins\DiscordSDK\ImageManager.cs" />
-    <Compile Include="Assets\Plugins\DiscordSDK\LobbyManager.cs" />
-    <Compile Include="Assets\Plugins\DiscordSDK\StorageManager.cs" />
-    <Compile Include="Assets\Plugins\DiscordSDK\StoreManager.cs" />
+    <Compile Include="Assets\Plugins\Discord SDK\ActivityManager.cs" />
+    <Compile Include="Assets\Plugins\Discord SDK\Constants.cs" />
+    <Compile Include="Assets\Plugins\Discord SDK\Core.cs" />
+    <Compile Include="Assets\Plugins\Discord SDK\ImageManager.cs" />
+    <Compile Include="Assets\Plugins\Discord SDK\LobbyManager.cs" />
+    <Compile Include="Assets\Plugins\Discord SDK\StorageManager.cs" />
+    <Compile Include="Assets\Plugins\Discord SDK\StoreManager.cs" />
+    <Compile Include="Assets\Plugins\DiscordUnity-0.2\DiscordExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\x64\libsodium.dll" />

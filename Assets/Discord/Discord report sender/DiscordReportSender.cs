@@ -10,20 +10,22 @@ public class DiscordReportSender : MonoBehaviour
     private DiscordClient client;
     [SerializeField] DiscordChannel _discordChannel;
 
+    public void Start()
+    {
+        CreateDiscord();
+    }
 
     void CreateDiscord()
     {
         client = new DiscordClient();
+        client.OnClientClosed += ClientClosed;
+        client.OnClientOpened += ClientOpened;
         client.StartBot(_settings.BotToken);
         client.SetStatus(false, "game");
-        client.OnClientOpened += ClientOpened;
-        client.OnClientClosed += ClientClosed;
     }
 
     private void ClientOpened(object s, DiscordEventArgs e)
     {
-        SendReport();
-        
         Debug.Log("Client opened");
     }
 
@@ -42,11 +44,6 @@ public class DiscordReportSender : MonoBehaviour
     }
 
     public void SendReportToDiscord()
-    {
-        CreateDiscord();
-    }
-
-    void SendReport()
     {
         Debug.Log("Try send Report");
         string _report = ConstructReport();
