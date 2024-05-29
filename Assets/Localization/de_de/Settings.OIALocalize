@@ -1,0 +1,9 @@
+lineId/|\nameKey/|\text/|\isLeft
+exit/|\ exit/|\ Выход/|\false
+audioSettings/|\audioSettings/|\ Настройка аудио/|\false
+videoSettings/|\videoSettings/|\ Настройка видео/|\false
+controlSettings/|\controlSettings/|\ Настройка управления/|\false
+mVolume/|\mVolume/|\ Громкость музыки/|\false
+sVolume/|\sVolume/|\ Громкость звука/|\false
+cVVolume/|\cVVolume/|\ Громкость голосов персонажей/|\false
+3dSound/|\3dSound/|\ 3D звук/|\false

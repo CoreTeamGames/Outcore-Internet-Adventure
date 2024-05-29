@@ -1,0 +1,23 @@
+lineId/|\nameKey/|\text/|\isLeft
+play/|\ play/|\ Играть/|\ false
+settings/|\ settings/|\ Настройки/|\ false
+discord/|\ discord/|\ Discord/|\ false
+creators/|\ creators/|\ Создатели/|\ false
+exit/|\ exit/|\ Выход/|\ false
+alphaText/|\ alphaText/|\ АЛЬФА БИЛД, ИГРА В РАЗРАБОТКЕ/|\ false
+menu/|\ menu/|\ Меню/|\ false
+audio/|\ audio/|\ Аудио/|\ false
+movement/|\ movement/|\ Управление/|\ false
+other/|\ other/|\ Другое/|\ false
+bossDifficulty/|\ bossDifficulty/|\ Сложность боссов/|\ false
+mVolume/|\ mVolume/|\ Громкость музыки/|\ false
+cVVolume/|\ cVVolume/|\ Громкость голосов персонажей/|\ false
+sVolume/|\ sVolume/|\ Громкость звуков/|\ false
+moveLeft/|\ moveLeft/|\ Влево/|\ false
+moveRight/|\ moveRight/|\ Вправо/|\ false
+moveUp/|\ moveUp/|\ Вверх/|\ false
+moveDown/|\ moveDown/|\ Вниз/|\ false
+dash/|\ dash/|\ Рывок (Дэш)/|\ false
+jump/|\ jump/|\ Прыжок/|\ false
+coreTeamCreators/|\ coreTeamCreators/|\ Игра от CoreTeam/|\ false
+LanguageSelect/|\ LanguageSelect/|\ Язык:/|\false

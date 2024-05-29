@@ -649,6 +649,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68751931}
   m_CullTransparentMesh: 0
+--- !u!114 &76960235 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 161260428701994058, guid: 56c7a32b23dd1dc45a71401fddd6e071,
+    type: 3}
+  m_PrefabInstance: {fileID: 591290427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &92885616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,7 +1623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b3017d1dbfa4b499734273c80ed4de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiSettings: {fileID: 11400000, guid: 7c7653d7394af1945a0b1c3b518657f2, type: 2}
+  uiSettings: {fileID: 11400000, guid: af1e15f597679f94cb94312eb389d0d1, type: 2}
   _onMenuShow:
     m_PersistentCalls:
       m_Calls:
@@ -1880,7 +1892,7 @@ MonoBehaviour:
     m_Groups: 
     m_Action: 
     m_Flags: 0
-  _attachedInputManager: {fileID: 0}
+  _attachedInputManager: {fileID: 556078141}
   _action:
     m_Name: Action
     m_Type: 0
@@ -5084,7 +5096,7 @@ MonoBehaviour:
   m_Actions: {fileID: -944628639613478452, guid: 7cb79975343721243bc8e5d1564fda7f,
     type: 3}
   m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
+  m_UIInputModule: {fileID: 76960235}
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5635,7 +5647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725720729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.008939743, y: 2.9293907, z: -10}
+  m_LocalPosition: {x: 0.008939743, y: 2.929337, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1421870204}
@@ -69160,7 +69172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421870203}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.008939743, y: -0.92939067, z: 0}
+  m_LocalPosition: {x: -0.008939743, y: -0.929337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 953286480}
@@ -72063,15 +72075,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ce78d143219b344990f180cde1f116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: 3
-  _achievementsFileName: Achievements
-  _showAndHideDuration: 1
-  _showWaitDuration: 3
-  _localizationService: {fileID: 1626252598}
-  _panel: {fileID: 148422828}
-  _icon: {fileID: 1434882851}
-  _titleText: {fileID: 884347864}
-  _descriptionText: {fileID: 1940987769}
 --- !u!1001 &4920258735461105605
 PrefabInstance:
   m_ObjectHideFlags: 0

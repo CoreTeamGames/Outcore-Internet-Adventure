@@ -1,0 +1,23 @@
+lineId/|\nameKey/|\text/|\isLeft
+play/|\ play/|\ Play/|\false
+settings/|\ settings/|\ Settings/|\false
+discord/|\ discord/|\ Discord/|\false
+creators/|\ creators/|\ Creators/|\false
+exit/|\ exit/|\ Exit/|\false
+alphaText/|\ alphaText/|\ Alpha build, Work in progress/|\false
+menu/|\ menu/|\ Menu/|\false
+audio/|\ audio/|\ Audio setup/|\false
+movement/|\ movement/|\ Movement setup/|\false
+other/|\ other/|\ Other/|\false
+bossDifficulty/|\ bossDifficulty/|\ Boss difficulty/|\false
+mVolume/|\ mVolume/|\ Music volume/|\ false
+cVVolume/|\ cVVolume/|\ Character voice volume/|\false
+sVolume/|\ sVolume/|\ Sound volume/|\false
+moveLeft/|\ moveLeft/|\ Move left/|\false
+moveRight/|\ moveRight/|\ Move right/|\false
+moveUp/|\ moveUp/|\ Move up/|\false
+moveDown/|\ moveDown/|\ Move down/|\false
+dash/|\ dash/|\ Dash/|\false
+jump/|\ jump/|\ Jump/|\false
+coreTeamCreators/|\ coreTeamCreators/|\ A game by CoreTeam/|\false
+LanguageSelect/|\ LanguageSelect/|\ Language:/|\false
