@@ -447,6 +447,9 @@
     <Reference Include="System.Threading.Tasks.Extensions">
       <HintPath>Assets\Packages\System.Threading.Tasks.Extensions.4.5.4\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="DiscordUnity">
+      <HintPath>Assets\Plugins\DiscordUnity.dll</HintPath>
+    </Reference>
     <Reference Include="websocket-sharp">
       <HintPath>Assets\Plugins\websocket-sharp.dll</HintPath>
     </Reference>
@@ -972,6 +975,10 @@
     <ProjectReference Include="SatorImaging.AppWindowUtility.csproj">
       <Project>{FEF75D68-1030-66CA-1933-1A80B160167C}</Project>
       <Name>SatorImaging.AppWindowUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="Lumpn.Discord.csproj">
+      <Project>{0238DE15-3A98-1284-1404-058728CCD4E2}</Project>
+      <Name>Lumpn.Discord</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,80 +1,29 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
-using DiscordUnity;
+using Lumpn.Discord;
 
 public class DiscordReportSender : MonoBehaviour
 {
-    [SerializeField] DiscordReportSenderSettings _settings;
+
+    [SerializeField] UnityEvent _onMessageSend;
     [SerializeField] TMP_InputField _textInputField;
     [SerializeField] TMP_InputField _nameInputField;
-    private DiscordClient client;
-    [SerializeField] DiscordChannel _discordChannel;
 
-    public void Start()
-    {
-        CreateDiscord();
-    }
-
-    void CreateDiscord()
-    {
-        client = new DiscordClient();
-        client.OnClientClosed += ClientClosed;
-        client.OnClientOpened += ClientOpened;
-        client.StartBot(_settings.BotToken);
-        client.SetStatus(false, "game");
-    }
-
-    private void ClientOpened(object s, DiscordEventArgs e)
-    {
-        Debug.Log("Client opened");
-    }
-
-    private void ClientClosed(object s, DiscordEventArgs e)
-    {
-        client.Stop();
-        Debug.Log("Client closed");
-    }
-
-    void Update()
-    {
-        if (client.isOnline)
-        {
-            client.Update();
-        }
-    }
+    public WebhookData webhookData;
+    Webhook webhook;
 
     public void SendReportToDiscord()
     {
         Debug.Log("Try send Report");
-        string _report = ConstructReport();
+        webhook = webhookData.CreateWebhook();
 
-        foreach (var server in _settings.DiscordChannels)
-        {
-            DiscordServer discordServer = null;
-            foreach (var _discordServer in client.servers)
-            {
-                if (_discordServer.name.ToLower() == server.ServerName.ToLower())
-                {
-                    discordServer = _discordServer;
-                    break;
-                }
-            }
-            foreach (var channel in discordServer.channels)
-            {
-                if (channel.name.ToLower() == server.ChannelName.ToLower())
-                {
-                    if (discordServer != null)
-                    channel.SendMessage(_report, false);
-                }
-            }
-            Debug.Log("Sended: " + _report);
-        }
+
+        var embed = new Embed()
+            .SetTitle($"A new report by {_nameInputField.text} sended now.")
+            .SetColor(new Color32(255,0,0,255))
+            .SetDescription($"Text of the report is {'"'}{_textInputField.text}{'"'}.\nSee it and fix bugs.");
+
+        StartCoroutine(webhook.Send(embed));
     }
-
-    string ConstructReport()
-    {
-        return $"A new report by {_nameInputField.text} sended now. \n Text of the report is {'"'}{_textInputField.text}{'"'}\n See it and fix bugs";
-    }
-
-
 }

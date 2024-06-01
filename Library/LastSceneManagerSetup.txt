@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Dialogue/NodeBasedDialogueSystem-master/Samples/DialogueSystemDemo/DemoScene.unity
+- path: Assets/LEVELS/Test scene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
