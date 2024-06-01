@@ -89,6 +89,7 @@
     <Compile Include="Assets\Localization scripts\LocalizeText.cs" />
     <Compile Include="Assets\Localization.cs" />
     <Compile Include="Assets\MenuEvents.cs" />
+    <Compile Include="Assets\Network\NetworkChecker.cs" />
     <Compile Include="Assets\ParralaxBackgroundMove.cs" />
     <Compile Include="Assets\Parsers\IniReader.cs" />
     <Compile Include="Assets\Parsers\IniWriter.cs" />

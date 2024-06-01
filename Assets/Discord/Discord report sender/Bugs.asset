@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: feb0865a39cbf5640832c456fc31fd59, type: 3}
-  m_Name: Bug
+  m_Name: Bugs
   m_EditorClassIdentifier: 
   webhookUrl: https://discord.com/api/webhooks/1246315073404801024/UILFH55rHSPTSfjaxib6jjzQcHvPkG9LmmIwLdxYs4HFJOf38EjwQiF8qyzSQ7mNl3Hr
   webhookName: Bugs

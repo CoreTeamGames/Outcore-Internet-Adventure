@@ -2,14 +2,14 @@
     "UxmlGuid": "562cb606a7571dd4995ee040ba753116",
     "UxmlPath": "Assets/Editor/DialogueTreeView.uxml",
     "CanvasX": 0,
-    "CanvasY": 82,
+    "CanvasY": 0,
     "CanvasWidth": 532,
-    "CanvasHeight": 342,
+    "CanvasHeight": 425,
     "MatchGameView": false,
-    "ZoomScale": 1.25,
+    "ZoomScale": 1.0,
     "PanOffset": {
-        "x": 68.30052185058594,
-        "y": 89.64865112304688
+        "x": -4.7595977783203129,
+        "y": 72.5189437866211
     },
     "ColorModeBackgroundOpacity": 1.0,
     "ImageModeCanvasBackgroundOpacity": 1.0,
