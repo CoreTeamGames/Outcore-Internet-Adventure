@@ -11,43 +11,31 @@
         "m_CodePreviewVisible": true,
         "m_OpenUXMLFiles": [
             {
-                "m_OpenUSSFiles": [
-                    {
-                        "m_StyleSheet": {
-                            "fileID": 7433441132597879392,
-                            "guid": "015a364235735d1459d266525b1f719d",
-                            "type": 3
-                        },
-                        "m_BackupStyleSheet": {
-                            "instanceID": 0
-                        },
-                        "m_OldPath": "Assets/Editor/DialogueTreeView.uss"
-                    }
-                ],
+                "m_OpenUSSFiles": [],
                 "m_VisualTreeAssetBackup": {
                     "instanceID": 0
                 },
-                "m_OpenendVisualTreeAssetOldPath": "Assets/Editor/DialogueTreeView.uxml",
+                "m_OpenendVisualTreeAssetOldPath": "Assets/Settings/Menu/Pause Menu.uxml",
                 "m_VisualTreeAsset": {
                     "fileID": 9197481963319205126,
-                    "guid": "562cb606a7571dd4995ee040ba753116",
+                    "guid": "96ff8f9541304984b9af53f0781ea31e",
                     "type": 3
                 },
                 "m_ActiveStyleSheet": {
                     "instanceID": 0
                 },
                 "m_Settings": {
-                    "UxmlGuid": "562cb606a7571dd4995ee040ba753116",
-                    "UxmlPath": "Assets/Editor/DialogueTreeView.uxml",
+                    "UxmlGuid": "96ff8f9541304984b9af53f0781ea31e",
+                    "UxmlPath": "Assets/Settings/Menu/Pause Menu.uxml",
                     "CanvasX": 0,
                     "CanvasY": 0,
-                    "CanvasWidth": 532,
-                    "CanvasHeight": 425,
+                    "CanvasWidth": 350,
+                    "CanvasHeight": 450,
                     "MatchGameView": false,
                     "ZoomScale": 1.0,
                     "PanOffset": {
-                        "x": -4.7595977783203129,
-                        "y": 72.5189437866211
+                        "x": 20.0,
+                        "y": 20.0
                     },
                     "ColorModeBackgroundOpacity": 1.0,
                     "ImageModeCanvasBackgroundOpacity": 1.0,

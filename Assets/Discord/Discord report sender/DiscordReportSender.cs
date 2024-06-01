@@ -1,83 +1,42 @@
-﻿using UnityEngine;
+﻿using OutcoreInternetAdventure.Network;
+using UnityEngine.Events;
+using Lumpn.Discord;
+using UnityEngine;
 using TMPro;
-using DiscordUnity;
 
 public class DiscordReportSender : MonoBehaviour
 {
-    [SerializeField] DiscordReportSenderSettings _settings;
+    [SerializeField] UnityEvent _onMessageSend;
+    [SerializeField] UnityEvent _onMessageFailToSend;
     [SerializeField] TMP_InputField _textInputField;
     [SerializeField] TMP_InputField _nameInputField;
-    private DiscordClient client;
-    [SerializeField] DiscordChannel _discordChannel;
+    [SerializeField] UnityEngine.UI.Button _reportMenuButton;
+    [SerializeField] WebhookData webhookData;
 
+    Webhook webhook;
 
-    void CreateDiscord()
+    public void TurnButton()
     {
-        client = new DiscordClient();
-        client.StartBot(_settings.BotToken);
-        client.SetStatus(false, "game");
-        client.OnClientOpened += ClientOpened;
-        client.OnClientClosed += ClientClosed;
-    }
-
-    private void ClientOpened(object s, DiscordEventArgs e)
-    {
-        SendReport();
-        
-        Debug.Log("Client opened");
-    }
-
-    private void ClientClosed(object s, DiscordEventArgs e)
-    {
-        client.Stop();
-        Debug.Log("Client closed");
-    }
-
-    void Update()
-    {
-        if (client.isOnline)
-        {
-            client.Update();
-        }
+        _reportMenuButton.interactable = NetworkService.CheckInternetConnection();
     }
 
     public void SendReportToDiscord()
     {
-        CreateDiscord();
-    }
-
-    void SendReport()
-    {
-        Debug.Log("Try send Report");
-        string _report = ConstructReport();
-
-        foreach (var server in _settings.DiscordChannels)
+        if (NetworkService.CheckInternetConnection())
         {
-            DiscordServer discordServer = null;
-            foreach (var _discordServer in client.servers)
-            {
-                if (_discordServer.name.ToLower() == server.ServerName.ToLower())
-                {
-                    discordServer = _discordServer;
-                    break;
-                }
-            }
-            foreach (var channel in discordServer.channels)
-            {
-                if (channel.name.ToLower() == server.ChannelName.ToLower())
-                {
-                    if (discordServer != null)
-                    channel.SendMessage(_report, false);
-                }
-            }
-            Debug.Log("Sended: " + _report);
+            Debug.Log("Network is avaliable. Try send Report.");
+            webhook = webhookData.CreateWebhook();
+            var embed = new Embed()
+                .SetTitle($"A new report by {_nameInputField.text} sended now.")
+                .SetColor(new Color32(255, 0, 0, 255))
+                .SetDescription($"Text of the report is {'"'}{_textInputField.text}{'"'}.\nSee it and fix bugs.");
+            StartCoroutine(webhook.Send(embed));
+            _onMessageSend?.Invoke();
+        }
+        else
+        {
+            Debug.LogError("Network isn't avaliable");
+            _onMessageFailToSend?.Invoke();
         }
     }
-
-    string ConstructReport()
-    {
-        return $"A new report by {_nameInputField.text} sended now. \n Text of the report is {'"'}{_textInputField.text}{'"'}\n See it and fix bugs";
-    }
-
-
 }

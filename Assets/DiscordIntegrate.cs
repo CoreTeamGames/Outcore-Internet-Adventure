@@ -26,6 +26,7 @@ public class DiscordIntegrate : MonoBehaviour
 
     public void Awake()
     {
+        UnityEditor.EditorApplication.playModeStateChanged += EditorAppQuit;
         discord = new Discord.Discord(applicationID, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
         time = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
         _discordActivityChangers = new List<DiscordActivityInfoChanger>();
@@ -77,6 +78,15 @@ public class DiscordIntegrate : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void EditorAppQuit(UnityEditor.PlayModeStateChange state)
+    {
+        if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
+        {
+            OnApplicationQuit();
+        }
+    }
+
     public void OnApplicationQuit()
     {
         activityManager.ClearActivity((res) =>

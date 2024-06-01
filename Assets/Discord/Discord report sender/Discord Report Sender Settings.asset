@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _discordChannels:
   - _serverName: CoreTeam
-    _channelName: "\u0440\u0435\u043F\u043E\u0440\u0442\u044B"
-  - _serverName: CoreTeam GLOBAL
-    _channelName: reports
-  _botToken: MTE3MjEwOTEzMDg3NDUwNzM0NQ.GIJlLH.NGtPo7LTr1Ol9GhYJbKFU5bAky7xkcy0CETPE8
+    _channelName: oia-bug-reports
+  _botToken: MTE3MjEwOTEzMDg3NDUwNzM0NQ.Gxk34O.kiBNBMm9m08RDwhSXB9B02Wal_7VLeqoAxpwKM
