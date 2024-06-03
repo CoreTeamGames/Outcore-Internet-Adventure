@@ -16,7 +16,7 @@ public class DiscordIntegrate : MonoBehaviour
     public void LateUpdate()
     {
         if (discord != null)
-        discord.RunCallbacks();
+            discord.RunCallbacks();
     }
 
     public void OnLevelWasLoaded(int level)
@@ -24,20 +24,27 @@ public class DiscordIntegrate : MonoBehaviour
         Awake();
     }
 
-    public void Awake()
+    public void Start()
     {
         UnityEditor.EditorApplication.playModeStateChanged += EditorAppQuit;
-        discord = new Discord.Discord(applicationID, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
-        time = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
-        _discordActivityChangers = new List<DiscordActivityInfoChanger>();
-        var objects = GameObject.FindGameObjectsWithTag("DiscordActivityChanger");
-        foreach (var item in objects)
+    }
+
+    public void Awake()
+    {
+        if (OutcoreInternetAdventure.Network.NetworkService.CheckInternetConnection())
         {
-            _discordActivityChangers.Add(item.GetComponent<DiscordActivityInfoChanger>());
-        }
-        foreach (var changer in _discordActivityChangers)
-        {
-            changer.OnChangeDiscordActivity += UpdateStatus;
+            discord = new Discord.Discord(applicationID, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
+            time = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            _discordActivityChangers = new List<DiscordActivityInfoChanger>();
+            var objects = GameObject.FindGameObjectsWithTag("DiscordActivityChanger");
+            foreach (var item in objects)
+            {
+                _discordActivityChangers.Add(item.GetComponent<DiscordActivityInfoChanger>());
+            }
+            foreach (var changer in _discordActivityChangers)
+            {
+                changer.OnChangeDiscordActivity += UpdateStatus;
+            }
         }
     }
 

@@ -885,6 +885,10 @@
       <Project>{924723A9-3692-5540-26EC-CC8AA906EA6C}</Project>
       <Name>Unity.2D.Path.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Lumpn.Discord.csproj">
+      <Project>{0238DE15-3A98-1284-1404-058728CCD4E2}</Project>
+      <Name>Lumpn.Discord</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
       <Project>{E594BE0F-8CCD-06F9-4F2B-EC42D6172F6E}</Project>
       <Name>Unity.Timeline</Name>
@@ -976,10 +980,6 @@
     <ProjectReference Include="SatorImaging.AppWindowUtility.csproj">
       <Project>{FEF75D68-1030-66CA-1933-1A80B160167C}</Project>
       <Name>SatorImaging.AppWindowUtility</Name>
-    </ProjectReference>
-    <ProjectReference Include="Lumpn.Discord.csproj">
-      <Project>{0238DE15-3A98-1284-1404-058728CCD4E2}</Project>
-      <Name>Lumpn.Discord</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
