@@ -30,9 +30,9 @@ TagManager:
   - Player
   - Character
   - Camera Collider
-  - 
-  - 
-  - 
+  - Interactable
+  - Player Collider
+  - Character Collider
   - 
   - 
   - 

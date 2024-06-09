@@ -114,6 +114,7 @@
     <Compile Include="Assets\Player\PlayerMove.cs" />
     <Compile Include="Assets\Player\PlayerSettings.cs" />
     <Compile Include="Assets\Player\StretchAndSquasher.cs" />
+    <Compile Include="Assets\PlayerInteractorHint.cs" />
     <Compile Include="Assets\ReadWriteSeekLine.cs" />
     <Compile Include="Assets\SaveAndLoadSystem.cs" />
     <Compile Include="Assets\SetCustomSpriteAtObject.cs" />

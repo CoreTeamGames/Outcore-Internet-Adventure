@@ -1994,12 +1994,12 @@ GameObject:
   m_Component:
   - component: {fileID: 317196238}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: InteractHint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &317196238
 Transform:
   m_ObjectHideFlags: 0
@@ -2565,7 +2565,7 @@ GameObject:
   - component: {fileID: 440869916}
   - component: {fileID: 440869915}
   - component: {fileID: 440869917}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2623,7 +2623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440869914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2720194, y: 26.95, z: -9.784616}
+  m_LocalPosition: {x: 43.26, y: -5.81, z: -9.784616}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1121399265}
@@ -2643,7 +2643,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.0722197, y: 0.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2654,7 +2654,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.4100187, y: 3.445938}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &445675249
 GameObject:
@@ -6131,7 +6131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725720729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.008938789, y: 2.9293046, z: -10}
+  m_LocalPosition: {x: 0.008939743, y: 2.9293826, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1421870204}
@@ -67873,7 +67873,8 @@ GameObject:
   - component: {fileID: 1076273167}
   - component: {fileID: 1076273166}
   - component: {fileID: 1076273165}
-  m_Layer: 8
+  - component: {fileID: 1076273168}
+  m_Layer: 11
   m_Name: Interactor
   m_TagString: PlayerComponent
   m_Icon: {fileID: 0}
@@ -67893,10 +67894,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events: {fileID: 0}
-  _interactorHint: {fileID: 317196237}
-  _interactorKeyText: {fileID: 1028272818}
-  _interactorKeyName: Interact
-  _offset: {x: 0.25, y: 0.5}
+  _onInteractAvaliable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1076273168}
+        m_MethodName: ShowHint
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onInteractNonAvaliable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1076273168}
+        m_MethodName: HideHind
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1076273168}
+        m_MethodName: HintPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &1076273166
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -67937,6 +67976,23 @@ Transform:
   m_Father: {fileID: 1032045842}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!114 &1076273168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076273164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cc68573d9dbef418597f7c1bbdb288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactorHint: {fileID: 317196237}
+  _interactorKeyText: {fileID: 1028272818}
+  _interactorKeyName: Interact
+  _offset: {x: 0.25, y: 0.5}
+  _interactorKeyImage: {fileID: 503529149}
 --- !u!1 &1080558282
 GameObject:
   m_ObjectHideFlags: 0
@@ -70233,7 +70289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421870203}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.008938789, y: -0.9293046, z: 0}
+  m_LocalPosition: {x: -0.008939743, y: -0.92938256, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 953286480}
