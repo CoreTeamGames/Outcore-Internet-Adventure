@@ -14,19 +14,21 @@ namespace OutcoreInternetAdventure.Settings
         [SerializeField] float _sfxVolume = 1f;
         [SerializeField] float _characterVolume = 1f;
         [SerializeField] float _musicVolume = 1f;
+        [SerializeField] float _brightness = 1f;
         [SerializeField] bool _enable3DSound = true;
 
         [SerializeField] bool _enableBloom;
         [SerializeField] bool _enableParticles;
         [SerializeField] InputActionMap _actionMap;
 
-        public Settings(float sfxVolume, float characterVolume, float musicVolume, bool enable3DSound,string langLocale)
+        public Settings(float sfxVolume, float characterVolume, float musicVolume, bool enable3DSound,string langLocale, float brightness)
         {
             _sfxVolume = sfxVolume;
             _characterVolume = characterVolume;
             _musicVolume = musicVolume;
             _enable3DSound = enable3DSound;
             _langLocale = langLocale;
+            _brightness = brightness;
         }
         #endregion
 
@@ -59,6 +61,10 @@ namespace OutcoreInternetAdventure.Settings
         /// Particles in game
         /// </summary>
         public bool EnableParticles { get { return _enableParticles; } }
+        /// <summary>
+        /// The brightness of screen
+        /// </summary>
+        public float Brightness { get { return _brightness; } }
         /// <summary>
         /// The Input action map asset
         /// </summary>

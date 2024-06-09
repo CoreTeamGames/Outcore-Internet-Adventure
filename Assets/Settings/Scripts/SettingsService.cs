@@ -25,6 +25,7 @@ namespace OutcoreInternetAdventure.Settings
             Parsers.Ini.IniWriter.Write($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Music Volume", settings.MusicVolume.ToString(), "Audio");
             Parsers.Ini.IniWriter.Write($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "3D sound", settings.Enable3DSound.ToString(), "Audio");
             Parsers.Ini.IniWriter.Write($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Current Language", settings.LangLocale.ToString(), "Localization");
+            Parsers.Ini.IniWriter.Write($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Brightness", settings.Brightness.ToString(), "Video");
             Debug.Log($"{Application.persistentDataPath}/{_saveFileName}.{_extension}");
         }
         public static Settings LoadSetiings()
@@ -35,7 +36,8 @@ namespace OutcoreInternetAdventure.Settings
             string _cVVolume = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Character Volume", "Audio");
             string _3dSound = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "3D sound", "Audio");
             string _langLocale = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Current Language", "Localization");
-            Settings _settings = new Settings(Convert.ToSingle(_sfxVolume), Convert.ToSingle(_cVVolume), Convert.ToSingle(_musicVolume), Convert.ToBoolean(_3dSound),_langLocale);
+            string _brightness = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Brightness", "Video");
+            Settings _settings = new Settings(Convert.ToSingle(_sfxVolume), Convert.ToSingle(_cVVolume), Convert.ToSingle(_musicVolume), Convert.ToBoolean(_3dSound),_langLocale, Convert.ToSingle(_brightness));
             return _settings;
         }
 

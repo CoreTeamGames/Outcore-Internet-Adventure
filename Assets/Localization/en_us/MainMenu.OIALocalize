@@ -1,23 +1,27 @@
 lineId/|\nameKey/|\text/|\isLeft
-play/|\ play/|\ Play/|\false
-settings/|\ settings/|\ Settings/|\false
-discord/|\ discord/|\ Discord/|\false
-creators/|\ creators/|\ Creators/|\false
-exit/|\ exit/|\ Exit/|\false
-alphaText/|\ alphaText/|\ Alpha build, Work in progress/|\false
-menu/|\ menu/|\ Menu/|\false
-audio/|\ audio/|\ Audio setup/|\false
-movement/|\ movement/|\ Movement setup/|\false
-other/|\ other/|\ Other/|\false
-bossDifficulty/|\ bossDifficulty/|\ Boss difficulty/|\false
-mVolume/|\ mVolume/|\ Music volume/|\ false
-cVVolume/|\ cVVolume/|\ Character voice volume/|\false
-sVolume/|\ sVolume/|\ Sound volume/|\false
-moveLeft/|\ moveLeft/|\ Move left/|\false
-moveRight/|\ moveRight/|\ Move right/|\false
-moveUp/|\ moveUp/|\ Move up/|\false
-moveDown/|\ moveDown/|\ Move down/|\false
-dash/|\ dash/|\ Dash/|\false
-jump/|\ jump/|\ Jump/|\false
-coreTeamCreators/|\ coreTeamCreators/|\ A game by CoreTeam/|\false
-LanguageSelect/|\ LanguageSelect/|\ Language:/|\false
+play/|\ play/|\ Play/|\ false
+JoinUs/|\ JoinUs/|\ Join Us at Discord/|\ false
+MovementSetup/|\ MovementSetup/|\ Movement setup/|\ false
+OtherСontrols/|\ OtherСontrols/|\ Other controls/|\ false
+Jump/|\ Jump/|\ Jump/|\ false
+Settings/|\ Settings/|\ Settings/|\ false
+OpenDiscord/|\ OpenDiscord/|\ Open Discord/|\ false
+Back/|\ Back/|\ Back/|\ false
+Other/|\ Other/|\ Other/|\ false
+Language/|\ Language/|\ Language/|\ false
+Audio/|\ Audio/|\ Audio/|\ false
+Video/|\ Video/|\ Video/|\ false
+Controls/|\ Controls/|\ Controls/|\ false
+Particles/|\ Particles/|\ Particles/|\ false
+Discord/|\ Discord/|\ Discord/|\ false
+MVolume/|\ MVolume/|\ Music volume/|\ false
+SFXVolume/|\ SFXVolume/|\ SFX volume/|\ false
+CVVolume/|\ CVVolume/|\ Character voice volume/|\ false
+Brightness/|\ Brightness/|\ Brightness/|\ false
+KeyboardXMouse/|\ KeyboardXMouse/|\ Keyboard and mouse/|\ false
+Gamepad/|\ Gamepad/|\ Gamepad/|\ false
+SkipOutput/|\ SkipOutput/|\ Skip line output/|\ false
+Interact/|\ Interact/|\ Interact/|\ false
+Dash/|\ Dash/|\ Dash/|\ false
+Exit/|\ Exit/|\ Exit/|\ false
+3DSound/|\ 3DSound/|\ 3D sound/|\ false

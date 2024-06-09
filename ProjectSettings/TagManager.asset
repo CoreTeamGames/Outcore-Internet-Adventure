@@ -17,6 +17,7 @@ TagManager:
   - DiscordIntegrator
   - DiscordActivityChanger
   - DiscordReportSender
+  - UIAudioSource
   layers:
   - Default
   - TransparentFX

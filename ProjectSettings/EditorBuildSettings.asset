@@ -5,15 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Kirurobo/UniWindowController/Samples/03_Fullscreen/FullscreenSample.unity
-    guid: cc8dc9342a8c4436397f75a2389ffc1a
   - enabled: 1
     path: Assets/LEVELS/LicenseChecker.unity
     guid: aa3f9b0de336f4741a1463cebb888010
   - enabled: 1
-    path: Assets/Menu/Menu.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Menu/Menu NEW.unity
+    guid: 8ff3f49e26768cc4fb10bb4e5bdb20e6
   - enabled: 1
     path: Assets/LEVELS/Test scene.unity
     guid: 2408d78c1f7a3b842b9009f1cb063704

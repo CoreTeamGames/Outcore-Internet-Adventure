@@ -19,14 +19,9 @@ public class DiscordIntegrate : MonoBehaviour
             discord.RunCallbacks();
     }
 
-    public void OnLevelWasLoaded(int level)
-    {
-        Awake();
-    }
-
     public void Start()
     {
-        UnityEditor.EditorApplication.playModeStateChanged += EditorAppQuit;
+        UnityEditor.EditorApplication.quitting += OnApplicationQuit;
     }
 
     public void Awake()
@@ -83,14 +78,6 @@ public class DiscordIntegrate : MonoBehaviour
         {
             // If updating the status fails, Destroy the GameObject
             Destroy(gameObject);
-        }
-    }
-
-    void EditorAppQuit(UnityEditor.PlayModeStateChange state)
-    {
-        if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
-        {
-            OnApplicationQuit();
         }
     }
 

@@ -69,6 +69,12 @@ public class LocalizationService : MonoBehaviour
 
     public void Awake() => AddLangs();
 
+    public void SelectLanguage(Language language)
+    {
+        _currentLanguage = language;
+        onlanguageSelectedEvent?.Invoke();
+    }
+
     [Button("Search languages in folder")]
     public void AddLangs()
     {

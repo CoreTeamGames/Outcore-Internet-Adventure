@@ -1,23 +1,27 @@
 lineId/|\nameKey/|\text/|\isLeft
 play/|\ play/|\ Играть/|\ false
-settings/|\ settings/|\ Настройки/|\ false
-discord/|\ discord/|\ Discord/|\ false
-creators/|\ creators/|\ Создатели/|\ false
-exit/|\ exit/|\ Выход/|\ false
-alphaText/|\ alphaText/|\ АЛЬФА БИЛД, ИГРА В РАЗРАБОТКЕ/|\ false
-menu/|\ menu/|\ Меню/|\ false
-audio/|\ audio/|\ Аудио/|\ false
-movement/|\ movement/|\ Управление/|\ false
-other/|\ other/|\ Другое/|\ false
-bossDifficulty/|\ bossDifficulty/|\ Сложность боссов/|\ false
-mVolume/|\ mVolume/|\ Громкость музыки/|\ false
-cVVolume/|\ cVVolume/|\ Громкость голосов персонажей/|\ false
-sVolume/|\ sVolume/|\ Громкость звуков/|\ false
-moveLeft/|\ moveLeft/|\ Влево/|\ false
-moveRight/|\ moveRight/|\ Вправо/|\ false
-moveUp/|\ moveUp/|\ Вверх/|\ false
-moveDown/|\ moveDown/|\ Вниз/|\ false
-dash/|\ dash/|\ Рывок (Дэш)/|\ false
-jump/|\ jump/|\ Прыжок/|\ false
-coreTeamCreators/|\ coreTeamCreators/|\ Игра от CoreTeam/|\ false
-LanguageSelect/|\ LanguageSelect/|\ Язык:/|\false
+JoinUs/|\ JoinUs/|\ Присоединяйтесь к нам в Discord/|\ false
+MovementSetup/|\ MovementSetup/|\ Настройка управления/|\ false
+OtherСontrols/|\ OtherСontrols/|\ Другие функции/|\ false
+Jump/|\ Jump/|\ Прыжок/|\ false
+Settings/|\ Settings/|\ Настройки/|\ false
+OpenDiscord/|\ OpenDiscord/|\ Открыть Discord/|\ false
+Back/|\ Back/|\ Назад/|\ false
+Other/|\ Other/|\ Другое/|\ false
+Language/|\ Language/|\ Язык/|\ false
+Audio/|\ Audio/|\ Звук/|\ false
+Video/|\ Video/|\ Видео/|\ false
+Controls/|\ Controls/|\ Управление/|\ false
+Particles/|\ Particles/|\ Частицы/|\ false
+Discord/|\ Discord/|\ Discord/|\ false
+MVolume/|\ MVolume/|\ Громкость музыки/|\ false
+SFXVolume/|\ SFXVolume/|\ Громкость звуков/|\ false
+CVVolume/|\ CVVolume/|\ Громкость голосов персонажей/|\ false
+Brightness/|\ Brightness/|\ Яркость/|\ false
+KeyboardXMouse/|\ KeyboardXMouse/|\ Клавиатура и мышь/|\ false
+Gamepad/|\ Gamepad/|\ Геймпад/|\ false
+SkipOutput/|\ SkipOutput/|\ Пропустить вывод строки диалога/|\ false
+Interact/|\ Interact/|\ Взаимодействие/|\ false
+Dash/|\ Dash/|\ Рывок/|\ false
+Exit/|\ Exit/|\ Выход/|\ false
+3DSound/|\ 3DSound/|\ 3D Звук/|\ false

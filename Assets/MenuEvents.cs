@@ -14,4 +14,12 @@ public class MenuEvents : MonoBehaviour
     {
         Application.OpenURL(_URL);
     }
+
+    public void CloseGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.ExitPlaymode();
+#endif
+        Application.Quit();
+    }
 }

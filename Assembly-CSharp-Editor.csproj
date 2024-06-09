@@ -347,6 +347,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@7.7.1\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
@@ -777,9 +780,17 @@
       <Project>{2AC1CEEC-1B4D-757C-AFBA-ACAE5A88994E}</Project>
       <Name>NaughtyAttributes.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj">
+      <Project>{C7F68033-6CF1-E67A-35E9-51B62C56EA75}</Project>
+      <Name>Unity.RenderPipelines.Core.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.InputSystem.csproj">
       <Project>{460EB61B-CE7F-6E18-9EB8-5A9C6AFC6A78}</Project>
       <Name>Unity.InputSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
+      <Project>{0483307A-4644-7277-7F78-A58E05709580}</Project>
+      <Name>Unity.RenderPipelines.Core.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="NaughtyAttributes.Test.csproj">
       <Project>{88791AD5-06BA-6E7E-4888-F1FE666B0B87}</Project>
@@ -816,6 +827,10 @@
     <ProjectReference Include="Unity.Rider.Editor.csproj">
       <Project>{43715A11-253C-17B0-8752-03786FEC23DE}</Project>
       <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj">
+      <Project>{C7E375B1-297E-E8BA-45F8-6A3CD527EC46}</Project>
+      <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.csproj">
       <Project>{62C6AB3B-844A-8DC1-D794-F59D1DF607D0}</Project>
@@ -857,9 +872,17 @@
       <Project>{1A0E4222-414A-51F4-BCFB-29C98021D07A}</Project>
       <Name>Unity.VisualStudio.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.ShaderGraph.Editor.csproj">
+      <Project>{4044C456-0C1B-9EE5-0E13-516819F3A4C1}</Project>
+      <Name>Unity.ShaderGraph.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Editor.csproj">
       <Project>{4DB9CD31-C145-98E4-DA18-A55FE7E5333D}</Project>
       <Name>Unity.Mathematics.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj">
+      <Project>{691F9AF0-5444-B9B9-2909-04F080A8F364}</Project>
+      <Name>Unity.RenderPipelines.Core.ShaderLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UIBuilderModule.csproj">
       <Project>{FDC239B5-6277-9F64-95F7-545F2A3731AC}</Project>

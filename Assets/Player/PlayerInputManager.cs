@@ -11,12 +11,14 @@ namespace OutcoreInternetAdventure.Player
         public delegate void OnAnykey(InputBinding binding);
         public OnAnykey onAnykeyEvent;
         PlayerInput _input;
+        PlayerInteractor _interactor;
         Dash.Dasher _dasher;
         [SerializeField] UI.PauseMenuUI _menu;
         bool _isPaused { get { return _menu.IsPaused; } }
 
         public void Awake()
         {
+            _interactor = gameObject.transform.parent.GetComponentInChildren<PlayerInteractor>();
             _input = GetComponent<PlayerInput>();
             if (_input.player.GetComponentInChildren<Dash.Dasher>() != null)
                 _dasher = _input.player.GetComponentInChildren<Dash.Dasher>();
@@ -57,6 +59,10 @@ namespace OutcoreInternetAdventure.Player
         public void OnAnyKey(InputBinding binding)
         {
             onAnykeyEvent?.Invoke(binding);
+        }
+        public void OnInteract()
+        {
+            _interactor.TryInteract();
         }
     }
 }

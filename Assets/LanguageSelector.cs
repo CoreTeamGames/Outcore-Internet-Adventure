@@ -1,40 +1,67 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class LanguageSelector : MonoBehaviour
 {
-    [SerializeField] TMP_Dropdown _dropdown;
-    [SerializeField] LocalizationService _localizationService;
+    LocalizationService _localizationService;
+    [SerializeField] GameObject _buttonTemplate;
+    [Min(0)]
+    [SerializeField] float _spacing = 10f;
 
     public void Awake()
     {
-        SetUpDropdown();
-    }
-
-    void SetUpDropdown()
-    {
-        _dropdown.ClearOptions();
-        List<string> _languageNames = new List<string>();
-        _localizationService.AddLangs();
-        foreach (var item in _localizationService.langs)
+        if (FindObjectOfType<LocalizationService>() != null)
         {
-            _languageNames.Add(item.langName);
+            _localizationService = FindObjectOfType<LocalizationService>();
         }
-        _dropdown.AddOptions(_languageNames);
-        _dropdown.value = GetLangIndex(_localizationService.CurrentLanguage.langCode);
+        else
+        {
+            Debug.LogError("Can't find LocalizationService!");
+            gameObject.SetActive(false);
+        }
     }
 
-    public void SelectLang()
+    public void SetUpscrollWiev()
     {
-        for (int i = 0; i < _localizationService.langs.Capacity; i++)
+        Navigation _navigation = new Navigation();
+        _navigation.mode = Navigation.Mode.Explicit;
+        _navigation.selectOnLeft = _buttonTemplate.GetComponent<Button>().navigation.selectOnLeft;
+        List<Button> _buttons = new List<Button>();
+        _buttonTemplate.SetActive(true);
+        for (int i = 0; i < _buttonTemplate.transform.parent.childCount; i++)
         {
-            if (_localizationService.langs[i].langName.ToLower() == _dropdown.options[_dropdown.value].text.ToLower())
+            if (_buttonTemplate.transform.parent.GetChild(i).gameObject != _buttonTemplate)
+                Destroy(_buttonTemplate.transform.parent.GetChild(i).gameObject);
+        }
+        GameObject _currentButton = _buttonTemplate;
+        foreach (var language in _localizationService.langs)
+        {
+            GameObject _button = Instantiate(_buttonTemplate, _buttonTemplate.transform.position, _buttonTemplate.transform.rotation, _buttonTemplate.gameObject.transform.parent);
+            _buttons.Add(_button.GetComponent<Button>());
+            _button.GetComponent<RectTransform>().localPosition = _currentButton.transform.localPosition - Vector3.up * (_currentButton.GetComponent<RectTransform>().sizeDelta.y + _spacing);
+            _button.GetComponentInChildren<TMP_Text>().text = language.langName;
+            _button.GetComponent<Button>().onClick.AddListener(() => SelectLang(language.langCode));
+            _currentButton = _button;
+        }
+        _buttonTemplate.SetActive(false);
+        for (int i = 0; i < _buttons.Count; i++)
+        {
+            _navigation.selectOnUp = i == 0 ? _buttons[_buttons.Count - 1] : _buttons[i - 1];
+            _navigation.selectOnDown = i == _buttons.Count - 1 ? _buttons[0] : _buttons[i + 1];
+            _buttons[i].navigation = _navigation;
+        }
+    }
+
+    public void SelectLang(string languageCode)
+    {
+        foreach (var language in _localizationService.langs)
+        {
+            if (languageCode.Trim().ToLower() == language.langCode.Trim().ToLower())
             {
-                _localizationService._currentLanguage = _localizationService.langs[i];
-                _localizationService.onlanguageSelectedEvent?.Invoke();
-                break;
+                _localizationService.SelectLanguage(language);
             }
         }
     }
