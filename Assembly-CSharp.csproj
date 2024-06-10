@@ -70,8 +70,9 @@
     <Compile Include="Assets\Desktop\SetTransparent.cs" />
     <Compile Include="Assets\Dialogue\DialogueCharacter.cs" />
     <Compile Include="Assets\Dialogue\DialogueGameWindow.cs" />
-    <Compile Include="Assets\Dialogue\System\Dialogue.cs" />
     <Compile Include="Assets\Dialogue\System\DialogueCharacter.cs" />
+    <Compile Include="Assets\Dialogue\System\Dialoguereader.cs" />
+    <Compile Include="Assets\Dialogue\System\Message.cs" />
     <Compile Include="Assets\Discord\Discord report sender\DiscordReportSender.cs" />
     <Compile Include="Assets\Discord\Discord report sender\DiscordReportSenderSettings.cs" />
     <Compile Include="Assets\DiscordActivityInfoChanger.cs" />

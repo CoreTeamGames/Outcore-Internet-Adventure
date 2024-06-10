@@ -9,7 +9,7 @@ namespace OutcoreInternetAdventure.DialogueSystem
         public bool canSpeakAgain = false;
         public bool canMovingOnDialogue = false;
 
-        [SerializeField] Dialogue dialogueForStart;
+        [SerializeField] string dialogueForStart;
         DialogueGameWindow dialogueWindow;
         #endregion
 
@@ -18,13 +18,11 @@ namespace OutcoreInternetAdventure.DialogueSystem
 
         public void StartEvent()
         {
+                dialogueWindow.StartDialogue(dialogueForStart);
             if (!speaked)
             {
-                dialogueWindow.dialogueScript = dialogueForStart;
-                dialogueWindow.StartDialogue();
-                speaked = true;
+                //speaked = true;
             }
-            dialogueWindow.onDialogueEndEvent += SetSpeaked;
         }
 
         void SetSpeaked() => speaked = !canSpeakAgain;
