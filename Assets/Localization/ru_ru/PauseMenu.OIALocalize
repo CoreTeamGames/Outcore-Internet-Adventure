@@ -5,3 +5,6 @@ report/|\ report/|\ Сообщить об ошибке/|\false
 skip/|\ skip/|\ Пропустить босса/|\false
 exit/|\ exit/|\ Выход/|\false
 restart/|\ restart/|\ Перезапустить этап/|\false
+SendReport/|\ restart/|\ Отправить репорт/|\false
+EnterName/|\ restart/|\ Введите имя.../|\false
+EnterText/|\ restart/|\ Введите текст репорта.../|\false

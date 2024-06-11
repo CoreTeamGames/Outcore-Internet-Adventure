@@ -1,9 +1,5 @@
-﻿using System;
-using TMPro;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using NaughtyAttributes;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -16,17 +12,8 @@ namespace OutcoreInternetAdventure.UI
         [SerializeField] UISettings uiSettings;
         [SerializeField] UnityEvent _onMenuShow;
         [SerializeField] UnityEvent _onMenuHide;
-        [SerializeField] GameObject[] _settingsMenus;
-        [SerializeField] GameObject _settingsMenuButtonsRoot;
-        [SerializeField] GameObject _menuWindow;
-        [SerializeField] Image panelImage;
-        [SerializeField] UnityEngine.EventSystems.EventSystem _system;
-        [SerializeField] List<Button> _pauseMenuButtonsList;
-        [SerializeField] List<Button> _settingsMenuButtonsList;
-        private GameObject _selected;
-        private Tween _tween;
-
-        private Color NullAlpha { get { return new Color(uiSettings.PanelColor.r, uiSettings.PanelColor.g, uiSettings.PanelColor.b, 0); } }
+        [SerializeField] CanvasGroup _panel;
+        [SerializeField] GameObject _pauseMenuObject;
         private float _currentGameTime;
 
         public void OnDestroy()
@@ -34,19 +21,6 @@ namespace OutcoreInternetAdventure.UI
             TimeService.SetTimeAsStandard();
         }
 
-        void UnselectButton()
-        {
-            _system.SetSelectedGameObject(_selected);
-        }
-        public void SelectObject(GameObject gameObject)
-        {
-            _system.SetSelectedGameObject(gameObject);
-        }
-        void SelectButton()
-        {
-            _selected = _system.currentSelectedGameObject;
-            _system.SetSelectedGameObject(_pauseMenuButtonsList[0].gameObject);
-        }
         public void PauseGame()
         {
             PauseGame(!IsPaused);
@@ -68,58 +42,28 @@ namespace OutcoreInternetAdventure.UI
         }
         public void ShowMenu()
         {
-            _onMenuShow?.Invoke();
-            panelImage.color = NullAlpha;
-            _menuWindow.SetActive(true);
-            SelectButton();
-            DOTween.Kill(panelImage);
-            panelImage.DOColor(uiSettings.PanelColor, uiSettings.MenuShowFadingDuration).SetUpdate(true).OnComplete(OnMenuShow);
+            _pauseMenuObject.SetActive(true);
+            DOTween.Kill(_panel);
+            _panel.DOFade(1, uiSettings.MenuShowFadingDuration).SetUpdate(true).OnComplete(OnMenuShow);
         }
-        void OnMenuShow()
-        {
-        }
+       
         public void HideMenu()
         {
-            _onMenuHide?.Invoke();
-            DOTween.Complete(panelImage);
-            panelImage.DOColor(NullAlpha, uiSettings.MenuShowFadingDuration).SetUpdate(true).OnComplete(OnMenuHide);
+            DOTween.Complete(_panel);
+            _panel.DOFade(0, uiSettings.MenuShowFadingDuration).SetUpdate(true).OnComplete(OnMenuHide);
         }
 
         void OnMenuHide()
         {
-            CloseSettings();
-            UnselectButton();
-            _menuWindow.SetActive(false);
+            _onMenuHide?.Invoke();
+            _pauseMenuObject.SetActive(false);
+        }
+        void OnMenuShow()
+        {
+            _onMenuShow?.Invoke();
+            
         }
 
-        public void OpenSettings()
-        {
-            SetInteractableMenuButtons(false);
-            _settingsMenuButtonsRoot.SetActive(true);
-            _system.SetSelectedGameObject(_settingsMenuButtonsList[0].gameObject);
-        }
-
-        public void CloseSettings()
-        {
-            SetInteractableMenuButtons(true);
-            _settingsMenuButtonsRoot.SetActive(false);
-            foreach (var button in _settingsMenuButtonsList)
-            {
-                button.gameObject.SetActive(true);
-            }
-            foreach (var menu in _settingsMenus)
-            {
-                menu.SetActive(false);
-            }
-            _system.SetSelectedGameObject(_pauseMenuButtonsList[0].gameObject);
-        }
-
-        void SetInteractableMenuButtons(bool interactable)
-        {
-            foreach (var button in _pauseMenuButtonsList)
-            {
-                button.interactable = interactable;
-            }
-        }
+       
     }
 }

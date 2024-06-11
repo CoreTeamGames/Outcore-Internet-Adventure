@@ -170,6 +170,7 @@
     <None Include="Assets\Packages\Microsoft.Extensions.Options.2.0.2\lib\netstandard2.0\Microsoft.Extensions.Options.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Packages\Microsoft.Extensions.Logging.2.0.2\lib\netstandard2.0\Microsoft.Extensions.Logging.dll" />
+    <None Include="Assets\UI\UIBlurFast.shader" />
     <None Include="Assets\Packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\LICENSE.TXT" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Packages\System.Runtime.CompilerServices.Unsafe.6.0.0\THIRD-PARTY-NOTICES.TXT" />
@@ -195,6 +196,7 @@
     <None Include="Assets\Resources\Localization\EN\Menu EN.txt" />
     <None Include="Assets\Packages\System.Text.Json.5.0.1\lib\netstandard2.0\System.Text.Json.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\UI\UIBlur.cginc" />
     <None Include="Assets\Packages\System.Buffers.4.5.1\LICENSE.TXT" />
     <None Include="Assets\Packages\System.Threading.Tasks.Extensions.4.5.4\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll" />
     <None Include="Assets\DOTween\readme.txt" />
@@ -245,6 +247,7 @@
     <None Include="Assets\Packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Packages\System.Text.Encodings.Web.5.0.0\lib\netstandard2.0\System.Text.Encodings.Web.dll" />
+    <None Include="Assets\UI\UIBlur.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Packages\System.Text.Encodings.Web.5.0.0\THIRD-PARTY-NOTICES.TXT" />
     <None Include="Assets\Packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.xml" />
