@@ -39,19 +39,15 @@ public class LocalizationService : MonoBehaviour
     [Serializable]
     public class DialogueText
     {
-        public DialogueText(string lineId, string nameKey, string text, bool isLeft)
+        public DialogueText(string lineKey, string text)
         {
-            this.lineId = lineId;
-            this.nameKey = nameKey;
+            this.lineKey = lineKey;
             this.text = text;
-            this.isLeft = isLeft;
         }
 
 
-        public string lineId { get; set; } = "";
-        public string nameKey { get; set; } = "";
+        public string lineKey { get; set; } = "";
         public string text { get; set; } = "";
-        public bool isLeft { get; set; } = false;
 
     }
 
@@ -80,7 +76,7 @@ public class LocalizationService : MonoBehaviour
     {
         _currentLanguage = null;
         langs = new List<Language>();
-        _pathToLocalizationFolder = $"{Application.dataPath}\\Localization";
+        _pathToLocalizationFolder = $"{Application.streamingAssetsPath}\\Localization";
         _Directories = AddAllDirectories(_pathToLocalizationFolder);
         langs = SearchAllLanguages(_Directories);
         
@@ -123,7 +119,7 @@ public class LocalizationService : MonoBehaviour
                     var records = _csvReader.GetRecords<DialogueText>();
                     foreach (var record in records)
                     {
-                        if (lineID == record.lineId.ToLower())
+                        if (lineID == record.lineKey.ToLower())
                         {
                             _localizedLine = record.text.ToString().TrimStart(' ').TrimEnd(' ');
                             break;
@@ -159,7 +155,7 @@ public class LocalizationService : MonoBehaviour
                     List<DialogueText> _lines = _csvReader.GetRecords<DialogueText>().ToList();
                     for (int i = 0; i < _lines.Count; i++)
                     {
-                        if (_lines[i].lineId.ToLower() == path)
+                        if (_lines[i].lineKey.ToLower() == path)
                             _dialogueText = _lines[i]; break;
                     }
                     return _dialogueText;
