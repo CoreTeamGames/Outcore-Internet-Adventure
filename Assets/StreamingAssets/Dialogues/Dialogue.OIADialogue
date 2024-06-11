@@ -1,31 +1,42 @@
-[\Lumi
-[\#Lumi_Attack#
+// Commands:
+//
+// Set animation for left character
+// [\#Animation#\]
+//
+// Set animation for right character
+// [/#Animation#/]
+//
+// Set name for left character
+// [\NameKey\]
+//
+// Set name for right character
+// [/NameKey/]
+//
+// Set Dialogue reading index
+// Starts read dialogue from 1'st line
+// [*1*] 
+//
+// Tags:
+//
+// If true, player can skip out of line
+// [canSkip=true]
+//
+// Delay of out a chars in line
+// [delay=0,01]
+[\#Lumi_curious2_1#\]
+[/#Golden lumi idle 1#/]
+[/???/]
+[\Lumi\]
 line0
+[\#Lumi_standSerious_1#\]
+[/Alice/]
 line1
-line2
-[/GoustYTC
-[/#Lumi_angry
-line3
-line4
-line2
-//Commentary
-//[|Answer1
-//{
-//line3
-//[*20
-//}
-//[|Answer2
-//{
-//line4
-//set index at line (20'th line)
-//[*20
-//}
-[/Ofelia
-line0
-line1
-line2
-[*31
-line3
-line3
-line3
-line1
+\line2
+/line3
+\line4
+/line5
+\line6
+/line7
+\line8
+/line9
+\line10

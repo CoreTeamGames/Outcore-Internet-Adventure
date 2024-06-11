@@ -1,30 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Message : MonoBehaviour
+public class Message
 {
-    [SerializeField] string _lineKey;
-    [SerializeField] string _leftNameKey;
-    [SerializeField] string _rightNameKey;
-    [SerializeField] AnimationClip _rightAnimation;
-    [SerializeField] AnimationClip _leftAnimation;
-    [SerializeField] bool _isLeft;
+    public string lineKey;
+    public string leftNameKey;
+    public string rightNameKey;
+    public Sprite rightAnimation;
+    public Sprite leftAnimation;
+    public bool isLeft;
+    public bool canskip;
+    public float delay;
 
-    public string LineKey { get { return _lineKey; } }
-    public string LeftNameKey { get { return _leftNameKey; } }
-    public string RightNameKey { get { return _rightNameKey; } }
-    public AnimationClip RightAnimation { get { return _rightAnimation; } }
-    public AnimationClip LeftAnimation { get { return _leftAnimation; } }
-    public bool IsLeft { get { return _isLeft; } }
-
-    public Message(string lineKey, string leftNameKey, string rightNameKey, AnimationClip rightAnimation, AnimationClip leftAnimation, bool isLeft)
+    public Message(string lineKey, string leftNameKey, string rightNameKey, Sprite rightAnimation, Sprite leftAnimation, bool isLeft, bool canskip, float delay)
     {
-        _lineKey = lineKey;
-        _leftNameKey = leftNameKey;
-        _rightNameKey = rightNameKey;
-        _rightAnimation = rightAnimation;
-        _leftAnimation = leftAnimation;
-        _isLeft = isLeft;
+        this.lineKey = lineKey;
+        this.leftNameKey = leftNameKey;
+        this.rightNameKey = rightNameKey;
+        this.rightAnimation = rightAnimation;
+        this.leftAnimation = leftAnimation;
+        this.isLeft = isLeft;
+        this.canskip = canskip;
+        this.delay = delay;
     }
+    public Message()
+    { }
 }

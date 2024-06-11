@@ -8,20 +8,19 @@ public class Dialoguereader : MonoBehaviour
 {
     string[] _dialogue;
     string[] _answersKeys;
-    [SerializeField] string _lineKey;
-    [SerializeField] string _leftNameKey;
-    [SerializeField] string _rightNameKey;
-    [SerializeField] AnimationClip _rightAnimation;
-    [SerializeField] AnimationClip _leftAnimation;
-    [SerializeField] AnimationClip[] _animations;
-    [SerializeField] bool _isLeft;
+    [SerializeField] float _standardDelay = 0.01f;
+    [SerializeField] bool _standardCanSkipOutput = true;
+    [SerializeField] Message _message;
+    [SerializeField] Sprite[] _sprites;
     string _fileExtension = "OIADialogue";
     int _stringId = 0;
 
     public void OpenDialogue(string name)
     {
+        _message = new Message("","","", null, null, false,_standardCanSkipOutput,_standardDelay);
         _stringId = 0;
-        _dialogue = File.ReadAllLines(Application.streamingAssetsPath + "/Dialogues/" + name + '.' + _fileExtension);
+        _dialogue = ClearNullArrayElements(File.ReadAllLines(Application.streamingAssetsPath + "/Dialogues/" + name + '.' + _fileExtension));
+        
     }
 
     public Message ReadLine()
@@ -40,80 +39,96 @@ public class Dialoguereader : MonoBehaviour
                                 {
                                     //Set animation to left character
                                     case '#':
-                                        _leftAnimation = FindAnimation(_dialogue[i].Remove(0, 3));
-                                        _isLeft = true;
+                                        _message.leftAnimation = GetSprite(_dialogue[i].Split('#')[1].ToLower());
+                                        _message.isLeft = true;
                                         continue;
 
                                     //Set left name key
                                     default:
-                                        _leftNameKey = _dialogue[i].Remove(0, 2).TrimStart(' ').TrimEnd(' ').ToLower();
-                                        _isLeft = true;
+                                        _message.leftNameKey = _dialogue[i].Split('\\')[1].TrimStart(' ').TrimEnd(' ').ToLower();
+                                        _message.isLeft = true;
                                         continue;
                                 }
-                                break;
                             case '/':
                                 switch (_dialogue[i][2])
                                 {
                                     //Set animation to right character
                                     case '#':
-                                        _rightAnimation = FindAnimation(_dialogue[i].Remove(0, 3));
-                                        _isLeft = false;
+                                        _message.rightAnimation = GetSprite(_dialogue[i].Split('#')[1].ToLower());
+                                        _message.isLeft = false;
                                         continue;
 
                                     //Set right name key
                                     default:
-                                        _rightNameKey = _dialogue[i].Remove(0, 2).TrimStart(' ').TrimEnd(' ').ToLower();
-                                        _isLeft = false;
+                                        _message.rightNameKey = _dialogue[i].Split('/')[1].TrimStart(' ').TrimEnd(' ').ToLower();
+                                        _message.isLeft = false;
                                         continue;
                                 }
-                                break;
                             case '|':
                                 continue;
-                                break;
                             case '*':
-                                _stringId = Convert.ToInt32(_dialogue[i].Remove(0, 2)) - 1;
-                                Message _message = ReadLine();
+                                _stringId = Convert.ToInt32(_dialogue[i].Split('*')[1]) - 1;
+                                _message = ReadLine();
                                 return _message;
 
                             default:
-                                break;
+                                string[] _tagAndValue = _dialogue[i].Trim('[', ']').Split('=');
+                                if (_tagAndValue.Length > 0)
+                                {
+                                    switch (_tagAndValue[0])
+                                    {
+                                        case "delay":
+                                            _message.delay = Convert.ToSingle(_tagAndValue[1]);
+                                            continue;
+
+                                        case "canSkip":
+                                            _message.canskip = Convert.ToBoolean(_tagAndValue[1]);
+                                            continue;
+                                        default:
+                                            Debug.LogError("Syntax doesn't have tag: " + _dialogue[i]);
+                                            continue;
+                                    }
+                                }
+                                else
+                                {
+                                    Debug.LogError("Tag doesn't have value! tag is: " + _dialogue[i]);
+                                    continue;
+                                }
                         }
-                        break;
+
                     case '/':
-                        switch (_dialogue[i][0])
+                        switch (_dialogue[i][1])
                         {
                             case '/':
                                 continue;
-                                break;
 
                             default:
-                                _isLeft = false;
-                                if (_dialogue[i].Length > 1)
+                                _message.isLeft = false;
+                                _stringId++;
+                                if (_dialogue[i].Length > 0)
                                 {
-                                    _lineKey = _dialogue[i].Remove(0);
-                                    _stringId = i + 1;
-                                    return new Message(_lineKey, _leftNameKey, _rightNameKey, _rightAnimation, _leftAnimation, _isLeft);
+                                    _message.lineKey = _dialogue[i].Remove(0, 1);
+                                    return _message;
                                 }
                                 else
                                     continue;
-                                break;
                         }
-                        break;
-                    case '\\':
-                        switch (_dialogue[i][0])
-                        {
 
-                            default:
-                                _isLeft = true;
-                                _lineKey = _dialogue[i].Remove(0);
-                                _stringId = i + 1;
-                                return new Message(_lineKey, _leftNameKey, _rightNameKey, _rightAnimation, _leftAnimation, _isLeft);
+                    case '\\':
+                        _message.isLeft = true;
+                        _stringId++;
+                        if (_dialogue[i].Length > 0)
+                        {
+                            _message.lineKey = _dialogue[i].Remove(0, 1);
+                            return _message;
                         }
+                        else
+                            continue;
 
                     default:
-                        _lineKey = _dialogue[i];
                         _stringId = i + 1;
-                        return new Message(_lineKey, _leftNameKey, _rightNameKey, _rightAnimation, _leftAnimation, _isLeft);
+                        _message.lineKey = _dialogue[i];
+                        return _message;
                 }
             }
         }
@@ -121,15 +136,29 @@ public class Dialoguereader : MonoBehaviour
         return null;
     }
 
-    AnimationClip FindAnimation(string animationKey)
+    Sprite GetSprite(string name)
     {
-        foreach (var animation in _animations)
+        name = name.ToLower();
+        foreach (var sprite in _sprites)
         {
-            if (animationKey.TrimStart(' ').TrimEnd(' ').ToLower() == animation.name.TrimStart(' ').TrimEnd(' ').ToLower())
+            if (sprite.name.ToLower() == name)
             {
-                return animation;
+                return sprite;
             }
         }
         return null;
+    }
+
+    string[] ClearNullArrayElements(string[] array)
+    {
+        List<string> _array = new List<string>();
+        foreach (var item in array)
+        {
+            if (item != "")
+            {
+                _array.Add(item);
+            }
+        }
+        return _array.ToArray();
     }
 }
