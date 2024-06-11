@@ -1,6 +1,6 @@
 lineId/|\nameKey/|\text/|\isLeft
-line1/|\ line1/|\ line1ddddddddddddddddddddddddddddddddd/|\false
-line2/|\ line2/|\ line2/|\false
-line3/|\ line3/|\ line3/|\false
-line4/|\ line4/|\ line4/|\false
-line0/|\ line0/|\ line0/|\false
+line1/|\ line1/|\ <color=red>This text is <color=green>mostly </color>red./|\false
+line2/|\ line2/|\ <color=red>This <i>text</i> goes from red<color=green> to green/|\false
+line3/|\ line3/|\ <u>Undedrline/|\false
+line4/|\ line4/|\ <s>Striketrough/|\false
+line0/|\ line0/|\ <size=100>Echo <size=80>Echo <size=60>Echo/|\false

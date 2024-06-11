@@ -40,12 +40,30 @@ namespace OutcoreInternetAdventure.DialogueSystem
                 _isOutput = false;
                 TMP_Text _text = _currentMessage.GetComponent<TMP_Text>();
                 _text.text = "";
+                int _totalLineLenght = 0;
                 for (int i = 0; i < _localizedLine.Length; i++)
                 {
-                    if (i % _lineLenght != 0)
-                        _text.text += _localizedLine[i];
+                    if (_localizedLine[i] == '<')
+                    {
+                        for (int f = i; f < _localizedLine.Length; f++)
+                        {
+                            _text.text += _localizedLine[f];
+                            if (_localizedLine[f] == '>')
+                            {
+                                i = f;
+                                break;
+                            }
+                        }
+                        continue;
+                    }
                     else
-                        _text.text += $"\n{_localizedLine[i]}";
+                    {
+                        _totalLineLenght++;
+                        if (_totalLineLenght % _lineLenght != 0)
+                            _text.text += _localizedLine[i];
+                        else
+                            _text.text += $"\n{_localizedLine[i]}";
+                    }
                 }
             }
         }
@@ -76,7 +94,7 @@ namespace OutcoreInternetAdventure.DialogueSystem
                     {
                         Destroy(message);
                     }
-                        _previousMessages.Clear();
+                    _previousMessages.Clear();
                 });
             }
         }
@@ -107,7 +125,7 @@ namespace OutcoreInternetAdventure.DialogueSystem
                 else
                     _text.text += $"\n{_localizedLine[i]}";
             }
-            _currentMessage.transform.DOLocalMoveY(_currentMessage.GetComponent<RectTransform>().rect.height + _text.margin.y,0.5f);
+            _currentMessage.transform.DOLocalMoveY(_currentMessage.GetComponent<RectTransform>().rect.height + _text.margin.y, 0.5f);
             _text.text = "";
             StartCoroutine(OutLine(_localizedLine, 0.1f, null, _currentMessage.GetComponent<TMP_Text>()));
         }
@@ -115,14 +133,32 @@ namespace OutcoreInternetAdventure.DialogueSystem
         IEnumerator OutLine(string line, float delay, AudioClip voice, TMP_Text text)
         {
             _isOutput = true;
+            int _totalLineLenght = 0;
             for (int i = 0; i < line.Length; i++)
             {
-                if (i % _lineLenght != 0)
-                    text.text += line[i];
+                if (line[i] == '<')
+                {
+                    for (int f = i; f < line.Length; f++)
+                    {
+                        text.text += line[f];
+                        if (line[f] == '>')
+                        {
+                            i = f;
+                            break;
+                        }
+                    }
+                    continue;
+                }
                 else
-                    text.text += $"\n{line[i]}";
-                _voiceSource.PlayOneShot(voice);
-                yield return new WaitForSeconds(delay);
+                {
+                    _totalLineLenght++;
+                    if (_totalLineLenght % _lineLenght != 0)
+                        text.text += line[i];
+                    else
+                        text.text += $"\n{line[i]}";
+                    _voiceSource.PlayOneShot(voice);
+                    yield return new WaitForSeconds(delay);
+                }
             }
             _isOutput = false;
         }
