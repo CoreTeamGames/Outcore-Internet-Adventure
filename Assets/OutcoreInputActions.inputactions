@@ -60,6 +60,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "SkipOutput",
+                    "type": "Button",
+                    "id": "08f1eede-183a-4737-a8c9-d142686c90da",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -192,6 +200,28 @@
                     "processors": "",
                     "groups": "Mouse Keyboard",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c97ec6a-28c4-424e-988c-3e19486bda8e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse Keyboard",
+                    "action": "SkipOutput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea91c0f6-350c-4c20-9ed2-eeb9676099f5",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Mouse Keyboard",
+                    "action": "SkipOutput",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

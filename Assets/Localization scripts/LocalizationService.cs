@@ -110,12 +110,14 @@ public class LocalizationService : MonoBehaviour
             {
                 var _config = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
                 {
-                    Delimiter = "/|\\"
+                    Delimiter = "/|\\",
+                    BadDataFound = null
                 };
                 using (CsvReader _csvReader = new CsvReader(_fileStream, _config))
                 {
                     lineID = lineID.ToLower();
                     _csvReader.Read();
+                    
                     _csvReader.ReadHeader();
                     string _localizedLine = null;
                     var records = _csvReader.GetRecords<DialogueText>();

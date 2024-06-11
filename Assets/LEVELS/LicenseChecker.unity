@@ -262,7 +262,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press me
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 17578ab2369ee554c8d1c00b10ea8d73, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &43222744
@@ -450,18 +450,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117ef8ff523a3344dae923ffcf5e27b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxVolume: 1
-  _characterVolume: 1
-  _musicVolume: 1
-  _enable3DSound: 1
-  _enableBloom: 0
-  _enableParticles: 0
+  _volumes: []
   _selectedLanguage:
     langCode: 
     langName: 
     isRTL: 0
     path: 
+  _localizationService: {fileID: 0}
   _languageList: []
+  _settings:
+    _langLocale: 
+    _sfxVolume: 0
+    _characterVolume: 0
+    _musicVolume: 0
+    _brightness: 0
+    _enable3DSound: 0
+    _enableBloom: 0
+    _enableParticles: 0
+    _actionMap:
+      m_Name: 
+      m_Id: 
+      m_Asset: {fileID: 0}
+      m_Actions: []
+      m_Bindings: []
   _inputAsset: {fileID: -944628639613478452, guid: 7cb79975343721243bc8e5d1564fda7f,
     type: 3}
   _actionMap:
@@ -489,6 +500,12 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
+  _3DSoundToggle: {fileID: 0}
+  _sfxSlider: {fileID: 0}
+  _musicSlider: {fileID: 0}
+  _CVVSlider: {fileID: 0}
+  _brightnessSlider: {fileID: 0}
+  _particlesToggle: {fileID: 0}
 --- !u!1 &749063773
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,8 +802,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter code...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 17578ab2369ee554c8d1c00b10ea8d73, type: 2}
+  m_sharedMaterial: {fileID: 5878662636809372788, guid: 17578ab2369ee554c8d1c00b10ea8d73,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -970,8 +988,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Check for access
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 17578ab2369ee554c8d1c00b10ea8d73, type: 2}
+  m_sharedMaterial: {fileID: 5878662636809372788, guid: 17578ab2369ee554c8d1c00b10ea8d73,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1731,8 +1750,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 17578ab2369ee554c8d1c00b10ea8d73, type: 2}
+  m_sharedMaterial: {fileID: 5878662636809372788, guid: 17578ab2369ee554c8d1c00b10ea8d73,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

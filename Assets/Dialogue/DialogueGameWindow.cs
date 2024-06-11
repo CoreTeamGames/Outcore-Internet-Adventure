@@ -1,154 +1,187 @@
-﻿using System.Collections;
-using TMPro;
+﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using DG.Tweening;
+using TMPro;
+using UnityEngine.UI;
 
 namespace OutcoreInternetAdventure.DialogueSystem
 {
     public class DialogueGameWindow : MonoBehaviour
     {
-        #region Events
-        public delegate void onPlayerSkipWrite();
-        public event onPlayerSkipWrite onPlayerSkipWriteEvent;
+        [SerializeField] UI.UISettings _uISettings;
+        [SerializeField] LocalizationService _localizationService;
+        [SerializeField] TMP_Text _leftNameText;
+        [SerializeField] TMP_Text _rightNameText;
+        [SerializeField] Image _leftCharacterAnimator;
+        [SerializeField] Image _rightCharacterAnimator;
+        [SerializeField] GameObject _leftMessagePrefab;
+        [SerializeField] GameObject _rightMessagePrefab;
+        [SerializeField] GameObject _messagesBox;
+        [SerializeField] GameObject _currentMessage;
+        [SerializeField] Sprite _previousMessageSprite;
+        [SerializeField] List<GameObject> _previousMessages;
+        [SerializeField] AudioSource _voiceSource;
+        [SerializeField] int _lineLenght = 14;
+        [SerializeField] float _messageOffset = 1;
+        [SerializeField] Dialoguereader _reader;
+        [SerializeField] bool _canSkipOutput = true;
+        bool _isOutput = false;
+        bool _dialogueRunning = false;
+        string _dialogueName = "Dialogue";
+        string _localizedLine;
 
-        public delegate void onNewLineStartsWriting();
-        public event onNewLineStartsWriting onNewLineStartsWritingEvent;
-
-        public delegate void onDialogueStarts();
-        public event onDialogueStarts onDialogueStartsEvent;
-
-        public delegate void onDialogueEnd();
-        public event onDialogueEnd onDialogueEndEvent;
-        #endregion
-
-        #region Variables
-
-        #region Public variables
-        //Text asset of dialogue.
-        public TMP_Text dialogueText;
-        //Text asset for left character name.
-        public TMP_Text lNameText;
-        //Text asset for right character name.
-        public TMP_Text rNameText;
-        //Audio source for character voices.
-        public AudioSource _source;
-        //Script for making dialogs.
-        public Dialogue dialogueScript;
-        //Localizator script for get strings(dialogue lines or character names).
-        public Localization localizator;
-        //Bool for checking dialogue line is output, or not.
-        public static bool isStarted = false;
-        //
-
-
-        //Variable for checks step of dialogue.
-        [Tooltip("If this equals 0, dialogue window or dialog not opened")]
-        public int currentStep = 0;
-        //
-        public GameObject window;
-        public Player.PlayerInputManager _input;
-
-
-        [HideInInspector]
-        public bool canDash;
-        [HideInInspector]
-        public bool canWalk;
-        [HideInInspector]
-        public bool canFly;
-
-        #endregion
-
-        #region Internal variables
-        //Internal bool for check, can player skip line output to end.
-        private static bool canSkip = true;
-        //Internal variable for keep loaded dialogue line.
-        private string _string;
-        //
-        [SerializeField] bool dialogueStarted = false;
-        #endregion
-
-        #endregion
-
-        #region Dialogue script
-        void GetVars()
+        public void TryDialogueStep()
         {
-            //Get vars from localization script.
-            //lNameText.text = localizator.characterNames[dialogueScript.dialogueSteps[currentStep].lNameID];
-            //rNameText.text = localizator.characterNames[dialogueScript.dialogueSteps[currentStep].rNameID];
-            canSkip = dialogueScript.DialogueLines[currentStep].CanSkipOutput;
+            if (_dialogueRunning)
+            {
+                if (!_isOutput)
+                {
+                    DialogueStep();
+                }
+                else if (_canSkipOutput)
+                {
+                    StopAllCoroutines();
+                    _isOutput = false;
+                    TMP_Text _text = _currentMessage.GetComponent<TMP_Text>();
+                    _text.text = "";
+                    int _totalLineLenght = 0;
+                    for (int i = 0; i < _localizedLine.Length; i++)
+                    {
+                        if (_localizedLine[i] == '<')
+                        {
+                            for (int f = i; f < _localizedLine.Length; f++)
+                            {
+                                _text.text += _localizedLine[f];
+                                if (_localizedLine[f] == '>')
+                                {
+                                    i = f;
+                                    break;
+                                }
+                            }
+                            continue;
+                        }
+                        else
+                        {
+                            _totalLineLenght++;
+                            if (_totalLineLenght % _lineLenght != 0)
+                                _text.text += _localizedLine[i];
+                            else
+                                _text.text += $"\n{_localizedLine[i]}";
+                        }
+                    }
+                }
+            }
         }
 
-        public void StartDialogue()
+        public void StartDialogue(string dialogueName)
         {
-            onDialogueStartsEvent?.Invoke();
-            currentStep = 0;
-            window.SetActive(true);
-            dialogueStarted = true;
-            GetVars();
-            WriteLine();
+            if (!_dialogueRunning)
+            {
+                _dialogueRunning = true;
+                GetComponent<CanvasGroup>().DOFade(1, _uISettings.MenuShowFadingDuration).OnComplete(() =>
+                {
+                    _reader.OpenDialogue(dialogueName);
+                    _dialogueName = dialogueName;
+                    DialogueStep();
+                });
+            }
         }
-        void WriteLine()
-        {
-            onNewLineStartsWritingEvent?.Invoke();
-            //_string = localizator.dialogueLines[dialogueScript.dialogueSteps[currentStep].stringID];
-            //Starting a output of dialogue line.
-            StartCoroutine(CharOutput(_string, dialogueScript.DialogueLines[currentStep].OutputSpeed, dialogueScript.DialogueLines[currentStep].EnableVoice, dialogueScript.DialogueLines[currentStep].DialogueCharacter.Voice));
-        }
-
         public void EndDialogue()
         {
-            onDialogueEndEvent?.Invoke();
-            dialogueStarted = false;
-            window.SetActive(false);
-        }
-
-
-        public void Update()
-        {
-            if (dialogueStarted)
+            if (_dialogueRunning)
             {
-                //If player press button(s) for skip line & this line is outputs & player can skip this line to end of output, make this.
-                if (isStarted && Input.GetButtonDown("SkipTextLine") && canSkip)
+                _dialogueRunning = false;
+                GetComponent<CanvasGroup>().DOFade(0, _uISettings.MenuShowFadingDuration).OnComplete(() =>
                 {
-                    isStarted = false;
-                    StopAllCoroutines();
-                    _source.Stop();
-                    dialogueText.text = _string;
-                }
-                //If player press button(s) for skip line & this line isn't outputs, set next step of dialogue.
-                else if (!isStarted && Input.GetButtonDown("SkipTextLine"))
-                {
-                    if (dialogueScript.DialogueLines.Count - 1 > currentStep)
+                    Destroy(_currentMessage);
+                    _currentMessage = null;
+                    foreach (var message in _previousMessages)
                     {
-                        currentStep++;
-                        WriteLine();
+                        Destroy(message);
                     }
-                    else
-                    { EndDialogue(); }
+                    _previousMessages.Clear();
+                    _leftCharacterAnimator.DOFade(0, _uISettings.MenuShowFadingDuration);
+                    _rightCharacterAnimator.DOFade(0, _uISettings.MenuShowFadingDuration).OnComplete(() =>
+                    {
+                        _leftNameText.text = "";
+                        _rightNameText.text = "";
+                        _leftCharacterAnimator.sprite = null;
+                    _rightCharacterAnimator.sprite = null;
+                    });
+                });
+            }
+        }
+        void DialogueStep()
+        {
+            Message _message = _reader.ReadLine();
+            _localizedLine = _localizationService.GetLocalizedLine(_dialogueName, _message.lineKey);
+            _leftNameText.text = _localizationService.GetLocalizedLine("Names", _message.leftNameKey);
+            _rightNameText.text = _localizationService.GetLocalizedLine("Names", _message.rightNameKey);
+            _leftCharacterAnimator.sprite = _message.leftAnimation;
+            _rightCharacterAnimator.sprite = _message.rightAnimation;
+            _leftCharacterAnimator.SetNativeSize();
+            _rightCharacterAnimator.SetNativeSize();
+            _leftCharacterAnimator.DOFade(1, _uISettings.MenuShowFadingDuration);
+            _rightCharacterAnimator.DOFade(1, _uISettings.MenuShowFadingDuration);
+
+            _canSkipOutput = _message.canskip;
+            if (_currentMessage != null)
+            {
+                _currentMessage.GetComponentInChildren<Image>().sprite = _previousMessageSprite;
+                _currentMessage.GetComponent<CanvasGroup>().DOFade(0.25f, 0.5f);
+                _previousMessages.Add(_currentMessage);
+                foreach (var previousMessage in _previousMessages)
+                {
+                    previousMessage.transform.DOKill(true);
+                    previousMessage.transform.DOLocalMoveY(previousMessage.transform.localPosition.y + _currentMessage.GetComponent<RectTransform>().rect.height + _messageOffset, 0.5f);
                 }
             }
-        }
-
-        #endregion
-
-        #region Functions for script
-        //Output of line.
-        IEnumerator CharOutput(string text, float delay = 0.02f, bool voiceEnabled = false, AudioClip clip = null)
-        {
-            isStarted = true;
-            dialogueText.text = "";
-
-            foreach (var sym in text)
+            _currentMessage = Instantiate(_message.isLeft ? _leftMessagePrefab : _rightMessagePrefab, _messagesBox.transform);
+            TMP_Text _text = _currentMessage.GetComponent<TMP_Text>();
+            for (int i = 0; i < _localizedLine.Length; i++)
             {
-                print(sym);
-                dialogueText.text += sym;
-                if (voiceEnabled && clip != null)
-                    _source.PlayOneShot(clip);
-
-                yield return new WaitForSeconds(delay);
+                if (i % _lineLenght != 0)
+                    _text.text += _localizedLine[i];
+                else
+                    _text.text += $"\n{_localizedLine[i]}";
             }
-
-            isStarted = false;
+            _currentMessage.transform.DOLocalMoveY(_currentMessage.GetComponent<RectTransform>().rect.height + _text.margin.y, 0.5f);
+            _text.text = "";
+            StartCoroutine(OutLine(_localizedLine, _message.delay, null, _currentMessage.GetComponent<TMP_Text>()));
         }
-        #endregion
+
+        IEnumerator OutLine(string line, float delay, AudioClip voice, TMP_Text text)
+        {
+            _isOutput = true;
+            int _totalLineLenght = 0;
+            for (int i = 0; i < line.Length; i++)
+            {
+                if (line[i] == '<')
+                {
+                    for (int f = i; f < line.Length; f++)
+                    {
+                        text.text += line[f];
+                        if (line[f] == '>')
+                        {
+                            i = f;
+                            break;
+                        }
+                    }
+                    continue;
+                }
+                else
+                {
+                    _totalLineLenght++;
+                    if (_totalLineLenght % _lineLenght != 0)
+                        text.text += line[i];
+                    else
+                        text.text += $"\n{line[i]}";
+                    _voiceSource.PlayOneShot(voice);
+                    yield return new WaitForSeconds(delay);
+                }
+            }
+            _isOutput = false;
+        }
     }
 }
