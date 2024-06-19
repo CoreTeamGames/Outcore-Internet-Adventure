@@ -131,44 +131,17 @@ public class LocalizationService : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Can't find file!");
+            Debug.LogError("Can't find file! file name is: " + fileName);
             return null;
         }
     }
 
-    public DialogueText GetLocalizedDialogueLineById(string path, string fileName, string lineID)
+    public bool LineExist(string fileName, string lineID)
     {
-        if (File.Exists($"{path}/{fileName}.{FileExtension.Trim('.')}"))
-        {
-            path = path.ToLower();
-            DialogueText _dialogueText = null;
-            using (var _fileStream = File.OpenText($"{path}/{fileName}.{FileExtension.Trim('.')}"))
-            {
-                var csvConfig = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.CurrentCulture)
-                {
-                    Delimiter = "/|\\"
-                };
-                using (CsvReader _csvReader = new CsvReader(_fileStream, csvConfig))
-                {
-                    _csvReader.Read();
-                    _csvReader.ReadHeader();
-                    List<DialogueText> _lines = _csvReader.GetRecords<DialogueText>().ToList();
-                    for (int i = 0; i < _lines.Count; i++)
-                    {
-                        if (_lines[i].lineKey.ToLower() == path)
-                            _dialogueText = _lines[i]; break;
-                    }
-                    return _dialogueText;
-
-
-                }
-            }
-        }
+        if (GetLocalizedLine(CurrentLanguage.path, fileName, lineID) != null)
+            return true;
         else
-        {
-            Debug.LogError("Can't find file!");
-            return null;
-        }
+            return false;
     }
 
     public Language SearchlanguagebyID(string _languageId)
@@ -185,7 +158,7 @@ public class LocalizationService : MonoBehaviour
             }
         }
         if (_lang == null)
-            Debug.LogError("Can't find language");
+            Debug.LogError("Can't find language! Language id is: " + _languageId);
 
         return _lang;
     }

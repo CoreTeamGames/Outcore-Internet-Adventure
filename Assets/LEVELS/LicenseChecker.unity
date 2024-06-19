@@ -451,13 +451,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _volumes: []
-  _selectedLanguage:
-    langCode: 
-    langName: 
-    isRTL: 0
-    path: 
   _localizationService: {fileID: 0}
-  _languageList: []
+  _rebindindingSettings: {fileID: 0}
   _settings:
     _langLocale: 
     _sfxVolume: 0
@@ -467,39 +462,10 @@ MonoBehaviour:
     _enable3DSound: 0
     _enableBloom: 0
     _enableParticles: 0
-    _actionMap:
-      m_Name: 
-      m_Id: 
-      m_Asset: {fileID: 0}
-      m_Actions: []
-      m_Bindings: []
-  _inputAsset: {fileID: -944628639613478452, guid: 7cb79975343721243bc8e5d1564fda7f,
-    type: 3}
-  _actionMap:
-    m_Name: Action Map
-    m_Id: c6bef923-3c19-46c5-a6bd-2dc3208b568d
-    m_Asset: {fileID: 0}
-    m_Actions: []
-    m_Bindings: []
-  _bindsForIngore: []
-  _bind:
-    m_Name: 
-    m_Id: 
-    m_Path: 
-    m_Interactions: 
-    m_Processors: 
-    m_Groups: 
-    m_Action: 
-    m_Flags: 0
-  _attachedInputManager: {fileID: 0}
-  _action:
-    m_Name: Action
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: edc41d69-ae41-4eed-858b-6e39e376c868
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
+  _onSettingsLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+  _asset: {fileID: 0}
   _3DSoundToggle: {fileID: 0}
   _sfxSlider: {fileID: 0}
   _musicSlider: {fileID: 0}
@@ -1496,7 +1462,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Menu
+            m_StringArgument: Menu NEW
             m_BoolArgument: 0
           m_CallState: 2
   - _code: kbhkgzphu
@@ -1545,7 +1511,7 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
   _accessedUserNames:
-  - Gogogogolyb_
+  - user
   - 153
   - "\u0414\u0438\u043C\u0430"
   - AMD

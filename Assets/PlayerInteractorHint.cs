@@ -11,7 +11,7 @@ public class PlayerInteractorHint : MonoBehaviour
     InputActionMap _inputActions;
     [SerializeField] GameObject _interactorHint;
     [SerializeField] TMP_Text _interactorKeyText;
-    [SerializeField] string _interactorKeyName = "Interact";
+    [SerializeField] InputActionReference _reference;
     [SerializeField] Vector2 _offset = Vector2.up;
     [SerializeField] Image _interactorKeyImage;
     Transform _firstRoot;
@@ -51,7 +51,7 @@ public class PlayerInteractorHint : MonoBehaviour
     }
     public void ShowHint()
     {
-        _interactorKeyText.text = _inputActions.FindAction(_interactorKeyName).bindings[0].path.Split('/')[1];
+        _interactorKeyText.text = InputControlPath.ToHumanReadableString(_reference.action.bindings[0].effectivePath,InputControlPath.HumanReadableStringOptions.OmitDevice);
         _interactorHint.transform.parent = _playerInteractor.Collision.transform;
         _interactorHint.transform.localPosition = new Vector3(_offset.x, _offset.y, _firstPosition.z);
         foreach (var text in _texts)

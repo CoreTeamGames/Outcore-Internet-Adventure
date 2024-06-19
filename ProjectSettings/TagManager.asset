@@ -18,6 +18,7 @@ TagManager:
   - DiscordActivityChanger
   - DiscordReportSender
   - UIAudioSource
+  - MenuCanvas
   layers:
   - Default
   - TransparentFX

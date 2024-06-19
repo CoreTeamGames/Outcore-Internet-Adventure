@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
-using NaughtyAttributes;
+using UnityEngine.Events;
 using UnityEngine.Audio;
+using UnityEngine.UI;
+using UnityEngine;
 
 namespace OutcoreInternetAdventure.Settings
 {
@@ -16,18 +15,10 @@ namespace OutcoreInternetAdventure.Settings
             public Slider slider;
         }
         [SerializeField] List<VolumeClass> _volumes;
-
-        [SerializeField] LocalizationService.Language _selectedLanguage;
         [SerializeField] LocalizationService _localizationService;
-        [SerializeField] List<LocalizationService.Language> _languageList;
-
+        [SerializeField] RebindindingSettings _rebindindingSettings;
         [SerializeField] Settings _settings;
-        [SerializeField] InputActionAsset _inputAsset;
-        [SerializeField] InputActionMap _actionMap;
-        [SerializeField] InputBinding[] _bindsForIngore;
-        [SerializeField] InputBinding _bind;
-        [SerializeField] Player.PlayerInputManager _attachedInputManager;
-        [SerializeField] InputAction _action;
+        [SerializeField] UnityEvent _onSettingsLoaded;
 
         [SerializeField] Toggle _3DSoundToggle;
         [SerializeField] Slider _sfxSlider;
@@ -36,7 +27,7 @@ namespace OutcoreInternetAdventure.Settings
 
         [SerializeField] Slider _brightnessSlider;
         [SerializeField] Toggle _particlesToggle;
-
+        public Settings Settings { get { return _settings; } }
         public void Start()
         {
             Initialize();
@@ -58,7 +49,6 @@ namespace OutcoreInternetAdventure.Settings
                 LoadSettings();
             }
             SetVolumeToAllMixers();
-            _actionMap = _inputAsset.actionMaps[0];
         }
 
         public void SetupSettings()
@@ -83,44 +73,18 @@ namespace OutcoreInternetAdventure.Settings
         {
             Debug.Log("Load Settings Menu");
             _settings = SettingsService.LoadSetiings();
+            _onSettingsLoaded?.Invoke();
             SetupSettings();
         }
 
         public void SaveSettings()
         {
             Debug.Log("Save Settings Menu");
-            _settings = new Settings(_sfxSlider.value, _CVVSlider.value, _musicSlider.value, _3DSoundToggle.isOn, _localizationService.CurrentLanguage.langCode,_brightnessSlider.value);
+            _settings = new Settings(_sfxSlider.value, _CVVSlider.value, _musicSlider.value, _3DSoundToggle.isOn, _localizationService.CurrentLanguage.langCode, _brightnessSlider.value, _rebindindingSettings.Binds);
             SettingsService.SaveSettings(_settings);
         }
 
-        public void StartRemapBinding(GameObject _f)
-        {
 
-            _bind = new InputBinding();
-            _attachedInputManager.onAnykeyEvent += CheckBind;
-
-        }
-
-        void CheckBind(InputBinding binding)
-        {
-            if (SettingsService.CheckBind(_bindsForIngore, binding) != false)
-            {
-                _bind = binding;
-                EndRemapBinding();
-            }
-        }
-
-        void EndRemapBinding()
-        {
-            _attachedInputManager.onAnykeyEvent -= CheckBind;
-            ChangeBind(_action);
-        }
-
-        public void ChangeBind(InputAction action)
-        {
-            InputAction _actionInMap = SettingsService.GetAction(action.name, _actionMap);
-            _actionInMap.ChangeBinding(_bind);
-        }
 
         public void ChangeBrightness()
         {

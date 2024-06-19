@@ -17,6 +17,15 @@ TextureImporter:
   - first:
       213: -350948444928183878
     second: UI keyboard_4
+  - first:
+      213: 6246309788343928524
+    second: UI Loading Bar base
+  - first:
+      213: -525177528407003751
+    second: UI Loading Bar Int
+  - first:
+      213: 4839022086392690842
+    second: UI Loading animation
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -197,7 +206,7 @@ TextureImporter:
         width: 83
         height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 16, y: 14, z: 16, w: 14}
       outline: []
       physicsShape: []
@@ -218,7 +227,7 @@ TextureImporter:
         width: 18
         height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,6 +235,69 @@ TextureImporter:
       bones: []
       spriteID: ab1749daf3e212bf0800000000000000
       internalID: -350948444928183878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Loading Bar base
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 95
+        width: 188
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 8, y: 8, z: 8, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc6094b78a95fa650800000000000000
+      internalID: 6246309788343928524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Loading Bar Int
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 104
+        width: 30
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99d684702d136b8f0800000000000000
+      internalID: -525177528407003751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Loading animation
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 5
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a98b4b703f8a72340800000000000000
+      internalID: 4839022086392690842
       vertices: []
       indices: 
       edges: []

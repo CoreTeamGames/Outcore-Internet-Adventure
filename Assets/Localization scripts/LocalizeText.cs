@@ -25,7 +25,10 @@ public class LocalizeText : MonoBehaviour
     public void Localize()
     {
         TMP_Text _text = GetComponent<TMP_Text>();
-        _text.text = _textLocalizator.GetLocalizedLine(_textLocalizator.CurrentLanguage.path, _fileName, _lineId);
+        if (_textLocalizator.LineExist(_fileName, _lineId))
+            _text.text = _textLocalizator.GetLocalizedLine(_fileName, _lineId);
+        else
+            _text.text = $"{_textLocalizator.CurrentLanguage.langName},{_textLocalizator.CurrentLanguage.langCode}, HAS NO LOCALIZATION KEY: {_lineId}! FILE NAME IS: {_fileName}";
     }
 
     public string ReturnLocalizedLine(string fileName, string lineKey)

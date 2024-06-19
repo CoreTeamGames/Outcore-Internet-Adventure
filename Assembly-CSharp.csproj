@@ -118,7 +118,10 @@
     <Compile Include="Assets\PlayerInteractorHint.cs" />
     <Compile Include="Assets\ReadWriteSeekLine.cs" />
     <Compile Include="Assets\SaveAndLoadSystem.cs" />
+    <Compile Include="Assets\SceneLoader.cs" />
     <Compile Include="Assets\SetCustomSpriteAtObject.cs" />
+    <Compile Include="Assets\Settings\Scripts\RebindindingSettings.cs" />
+    <Compile Include="Assets\Settings\Scripts\RebindingButton.cs" />
     <Compile Include="Assets\Settings\Scripts\Settings.cs" />
     <Compile Include="Assets\Settings\Scripts\SettingsMenu.cs" />
     <Compile Include="Assets\Settings\Scripts\SettingsService.cs" />
@@ -161,6 +164,7 @@
     <Compile Include="Assets\TimeService.cs" />
     <Compile Include="Assets\TriggerOnCollision.cs" />
     <Compile Include="Assets\UI\Scripts\AchievementSystemUI.cs" />
+    <Compile Include="Assets\UI\Scripts\ChapterData.cs" />
     <Compile Include="Assets\UIButtonAnimator.cs" />
     <Compile Include="Assets\UISettings.cs" />
   </ItemGroup>

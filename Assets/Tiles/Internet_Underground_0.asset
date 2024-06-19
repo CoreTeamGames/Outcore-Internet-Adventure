@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Internet_Underground_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -8927768905895983427, guid: 5c5cd580e191a184890cdc05686db1f0,
+  m_Sprite: {fileID: -7170901409909318381, guid: 9e0f019798a608140bc00cdeb4ef913f,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:

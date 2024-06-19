@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace OutcoreInternetAdventure.Settings
 {
@@ -19,9 +19,11 @@ namespace OutcoreInternetAdventure.Settings
 
         [SerializeField] bool _enableBloom;
         [SerializeField] bool _enableParticles;
-        [SerializeField] InputActionMap _actionMap;
+        [SerializeField] string[] _binds;
 
-        public Settings(float sfxVolume, float characterVolume, float musicVolume, bool enable3DSound,string langLocale, float brightness)
+
+
+        public Settings(float sfxVolume, float characterVolume, float musicVolume, bool enable3DSound,string langLocale, float brightness, string[] binds)
         {
             _sfxVolume = sfxVolume;
             _characterVolume = characterVolume;
@@ -29,6 +31,7 @@ namespace OutcoreInternetAdventure.Settings
             _enable3DSound = enable3DSound;
             _langLocale = langLocale;
             _brightness = brightness;
+            _binds = binds;
         }
         #endregion
 
@@ -68,7 +71,7 @@ namespace OutcoreInternetAdventure.Settings
         /// <summary>
         /// The Input action map asset
         /// </summary>
-        public InputActionMap ActionMap { get { return _actionMap; } }
+        public string[] Binds { get { return _binds; } }
         #endregion
     }
 }

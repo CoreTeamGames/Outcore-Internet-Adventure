@@ -1,13 +1,15 @@
-﻿using System;
-using System.IO;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEngine;
+using System.IO;
+using System;
 
 namespace OutcoreInternetAdventure.Settings
 {
     public static class SettingsService
     {
-        [SerializeField] static string _saveFileName = "SaveLumi";
+        [SerializeField] static string _saveFileName = "SaveMe";
+        [SerializeField] static string _controlsFileName = "ControlMe";
         [SerializeField] static string _extension = "OIASettings";
 
         public static bool HasSettingsFile()
@@ -26,18 +28,38 @@ namespace OutcoreInternetAdventure.Settings
             Parsers.Ini.IniWriter.Write($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "3D sound", settings.Enable3DSound.ToString(), "Audio");
             Parsers.Ini.IniWriter.Write($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Current Language", settings.LangLocale.ToString(), "Localization");
             Parsers.Ini.IniWriter.Write($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Brightness", settings.Brightness.ToString(), "Video");
+            using (var _fileStream = File.Open($"{Application.persistentDataPath}/{_controlsFileName}.{_extension}", FileMode.Create,FileAccess.Write))
+            {
+                using (StreamWriter _streamWriter = new StreamWriter(_fileStream))
+                {
+                    foreach (var bind in settings.Binds)
+                    {
+                        _streamWriter.WriteLine(bind);
+                    }
+                }
+            }
             Debug.Log($"{Application.persistentDataPath}/{_saveFileName}.{_extension}");
         }
         public static Settings LoadSetiings()
         {
             Debug.Log("Load Settings");
-            string _sfxVolume = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "SFX Volume","Audio");
+            string _sfxVolume = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "SFX Volume", "Audio");
             string _musicVolume = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Music Volume", "Audio");
             string _cVVolume = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Character Volume", "Audio");
             string _3dSound = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "3D sound", "Audio");
             string _langLocale = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Current Language", "Localization");
             string _brightness = Parsers.Ini.IniReader.Read($"{Application.persistentDataPath}/{_saveFileName}.{_extension}", "Brightness", "Video");
-            Settings _settings = new Settings(Convert.ToSingle(_sfxVolume), Convert.ToSingle(_cVVolume), Convert.ToSingle(_musicVolume), Convert.ToBoolean(_3dSound),_langLocale, Convert.ToSingle(_brightness));
+            string[] _binds;
+            string _bindsNonArray = "";
+            using (var _fileStream = File.Open($"{Application.persistentDataPath}/{_controlsFileName}.{_extension}", FileMode.OpenOrCreate))
+            {
+                using (StreamReader _streamReader = new StreamReader(_fileStream))
+                {
+                    _bindsNonArray = _streamReader.ReadToEnd();
+                }
+            }
+            _binds = _bindsNonArray.Split('\n');
+            Settings _settings = new Settings(Convert.ToSingle(_sfxVolume), Convert.ToSingle(_cVVolume), Convert.ToSingle(_musicVolume), Convert.ToBoolean(_3dSound), _langLocale, Convert.ToSingle(_brightness), _binds);
             return _settings;
         }
 

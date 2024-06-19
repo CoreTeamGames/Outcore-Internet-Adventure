@@ -1,12 +1,11 @@
 lineKey/|\text
 play/|\Играть
 JoinUs/|\Присоединяйтесь к нам в Discord
-MovementSetup/|\Настройка управления
 OtherСontrols/|\ Другие функции
-Jump/|\ Прыжок
 Settings/|\ Настройки
 OpenDiscord/|\ Открыть Discord
 Back/|\ Назад
+Exit/|\ Выход
 Other/|\ Другое
 Language/|\ Язык
 Audio/|\ Звук
@@ -18,10 +17,20 @@ MVolume/|\ Громкость музыки
 SFXVolume/|\ Громкость звуков
 CVVolume/|\ Громкость голосов персонажей
 Brightness/|\ Яркость
+3DSound/|\ 3D Звук
 KeyboardXMouse/|\ Клавиатура и мышь
 Gamepad/|\ Геймпад
-SkipOutput/|\ Пропустить вывод строки диалога
-Interact/|\ Взаимодействие
+MovementSetup/|\Настройка управления
+MoveUp/|\ Движение вверх
+MoveDown/|\ Движение вниз
+MoveLeft/|\ Движение влево
+MoveRight/|\ Движение вправо
+Jump/|\ Прыжок
 Dash/|\ Рывок
-Exit/|\ Выход
-3DSound/|\ 3D Звук
+Fly/|\ Полёт
+Interact/|\ Взаимодействие
+DialoguesSetup/|\ Настройка действий в диалогах
+SkipOutput/|\ Пропустить вывод строки диалога
+ResetControls/|\ Сбросить настройки управления
+Loading/|\ Загрузка
+RebindUI/|\ Нажмите любую клавишу для установления нового значения для действия. Нажмите Escape Для отмены.

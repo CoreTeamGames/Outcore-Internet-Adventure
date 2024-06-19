@@ -21,14 +21,16 @@ public class DiscordIntegrate : MonoBehaviour
 
     public void Start()
     {
-        UnityEditor.EditorApplication.quitting += OnApplicationQuit;
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.quitting += ClearActivity;
+#endif
     }
 
     public void Awake()
     {
         if (OutcoreInternetAdventure.Network.NetworkService.CheckInternetConnection())
         {
-            discord = new Discord.Discord(applicationID, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
+            discord = new Discord.Discord(applicationID, (ulong)Discord.CreateFlags.NoRequireDiscord);
             time = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
             _discordActivityChangers = new List<DiscordActivityInfoChanger>();
             var objects = GameObject.FindGameObjectsWithTag("DiscordActivityChanger");
@@ -83,6 +85,12 @@ public class DiscordIntegrate : MonoBehaviour
 
     public void OnApplicationQuit()
     {
+        ClearActivity();
+    }
+
+    void ClearActivity()
+    {
+        if (activityManager != null)
         activityManager.ClearActivity((res) =>
         {
             if (res != Discord.Result.Ok) Debug.LogWarning("Failed clear activity!");
