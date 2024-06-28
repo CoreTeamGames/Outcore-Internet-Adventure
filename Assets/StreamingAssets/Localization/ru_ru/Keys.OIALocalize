@@ -1,6 +1,13 @@
 lineKey/|\text
 left Button/|\ЛКМ
-light Button/|\ПКМ
+right Button/|\ПКМ
+left Shift/|\ЛКМ
+right Shift/|\ПКМ
+left Control/|\Левый контрол
+right Control/|\Правый контрол
+left Alt/|\Левый альт
+right Alt/|\Правый альт
+Tab/|\Таб
 space/|\Пробел
 left Stick/|\Л. Стик
 right Stick/|\П. Стик
