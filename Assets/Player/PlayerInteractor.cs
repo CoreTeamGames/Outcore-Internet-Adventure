@@ -13,6 +13,8 @@ namespace OutcoreInternetAdventure.Player
         [SerializeField] UnityEvent _onInteractNonAvaliable;
         [SerializeField] UnityEvent _onInteract;
 
+        public IInteractor Interactor => _interactor;
+
         public Collider2D Collision { get { return _collision; } }
 
         public void OnTriggerEnter2D(Collider2D collision)
@@ -29,7 +31,7 @@ namespace OutcoreInternetAdventure.Player
 
         public void TryInteract()
         {
-            if (_interactor != null)
+            if (_interactor != null && _interactor.CanInteract)
             {
                 _interactor.StartEvent();
                 _onInteract?.Invoke();

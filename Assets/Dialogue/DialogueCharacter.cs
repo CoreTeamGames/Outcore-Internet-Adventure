@@ -5,12 +5,13 @@ namespace OutcoreInternetAdventure.DialogueSystem
     public class DialogueCharacter : MonoBehaviour, IInteractor
     {
         #region Variables
-        [HideInInspector] public bool speaked = false;
-        public bool canSpeakAgain = false;
-        public bool canMovingOnDialogue = false;
-
+        [SerializeField] bool _speaked = false;
+        [SerializeField] bool _canSpeakAgain = false;
+        [SerializeField] bool _canMovingOnDialogue = false;
         [SerializeField] string dialogueForStart;
         DialogueGameWindow dialogueWindow;
+
+        public bool CanInteract => !_speaked;
         #endregion
 
         #region Code
@@ -18,14 +19,12 @@ namespace OutcoreInternetAdventure.DialogueSystem
 
         public void StartEvent()
         {
-                dialogueWindow.StartDialogue(dialogueForStart);
-            if (!speaked)
+            if (!_speaked)
             {
-                //speaked = true;
+                dialogueWindow.StartDialogue(dialogueForStart);
+                _speaked = _canSpeakAgain == true ? false : true;
             }
         }
-
-        void SetSpeaked() => speaked = !canSpeakAgain;
         #endregion
     }
 }

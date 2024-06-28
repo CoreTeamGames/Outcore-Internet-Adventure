@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Assets\Achievements\Scripts\Achievement.cs" />
     <Compile Include="Assets\Achievements\Scripts\AchievementSystem.cs" />
+    <Compile Include="Assets\ControlSettings.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics.cs" />
@@ -165,6 +166,10 @@
     <Compile Include="Assets\TriggerOnCollision.cs" />
     <Compile Include="Assets\UI\Scripts\AchievementSystemUI.cs" />
     <Compile Include="Assets\UI\Scripts\ChapterData.cs" />
+    <Compile Include="Assets\UI\Scripts\DevicesAndControlSchemes.cs" />
+    <Compile Include="Assets\UI\Scripts\DevicesManager.cs" />
+    <Compile Include="Assets\UI\Scripts\DevicesManagerUI.cs" />
+    <Compile Include="Assets\UI\Scripts\UIWindow.cs" />
     <Compile Include="Assets\UIButtonAnimator.cs" />
     <Compile Include="Assets\UISettings.cs" />
   </ItemGroup>

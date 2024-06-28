@@ -60,18 +60,19 @@ namespace OutcoreInternetAdventure.Player
         [SerializeField] states _playerStates = states.idle;
         [SerializeField] movingType _playerMovingType;
         [SerializeField] bool _flyAbility = false;
-        [SerializeField] bool _WalkAbility = true;
+        [SerializeField] bool _walkAbility = true;
         [SerializeField] bool _jumpAbility = true;
-        public bool _canJump = true;
+        public bool canJump = true;
         [SerializeField] bool _onGround = true;
         bool _flipX;
+        bool _canMove = true;
 
         public states PlayerStates { get { return _playerStates; } }
         public movingType PlayerMovingType { get { return _playerMovingType; } }
         public bool FlyAbility { get { return _flyAbility; } }
-        public bool WalkAbility { get { return _WalkAbility; } }
+        public bool WalkAbility { get { return _walkAbility; } }
         public bool JumpAbility { get { return _jumpAbility; } }
-        public bool CanJump { get { return _canJump; } }
+        public bool CanJump { get { return canJump; } }
         public bool IsJumped { get { return _isJumped; } }
         public bool OnGround { get { return _onGround; } }
 
@@ -89,19 +90,17 @@ namespace OutcoreInternetAdventure.Player
         {
             yield return new WaitForSeconds(_settings.TimerForJump);
             if (!_onGround)
-                _canJump = false;
+                canJump = false;
         }
-
         public void OnPlayerLand()
         {
             _onGround = true;
             _timerStarted = false;
             _isJumped = false;
-            _canJump = true;
+            canJump = true;
             if (rotateTransform.rotation.z != 0)
                 rotateTransform.rotation = new Quaternion(0, 0, 0, 0);
         }
-
         public void OnLanded(bool _spawnParticles, Collision2D _collider2D, bool _strongParticles = false)
         {
             OnPlayerLand();
@@ -128,40 +127,43 @@ namespace OutcoreInternetAdventure.Player
         }
         void Update()
         {
-            if (_WalkAbility && MovingVector.x != 0)
+            if (_canMove)
             {
-                _flipX = MovingVector.x < 0;
-                if (_playerStates != states.jump)
+                if (_walkAbility && MovingVector.x != 0)
                 {
-                    playerSpriteRenderer.flipX = _flipX;
+                    _flipX = MovingVector.x < 0;
+                    if (_playerStates != states.jump)
+                    {
+                        playerSpriteRenderer.flipX = _flipX;
+                    }
                 }
-            }
 
-            SwitchState();
+                SwitchState();
 
-            switch (_playerMovingType)
-            {
-                case movingType.walk:
-                    if (_onGround)
-                    {
-                        if (MovingVector.x != 0)
-                            _playerStates = states.run;
+                switch (_playerMovingType)
+                {
+                    case movingType.walk:
+                        if (_onGround)
+                        {
+                            if (MovingVector.x != 0)
+                                _playerStates = states.run;
+                            else
+                                _playerStates = states.idle;
+                        }
                         else
-                            _playerStates = states.idle;
-                    }
-                    else
-                    {
-                        if (playerRigidBody2D.velocity.y != 0 && (playerRigidBody2D.velocity.y <= -_settings.VelocityForApplyRotation || playerRigidBody2D.velocity.y >= _settings.VelocityForApplyRotation))
-                            _playerStates = states.spin;
-                        else if (_isJumped)
-                            _playerStates = states.jump;
+                        {
+                            if (playerRigidBody2D.velocity.y != 0 && (playerRigidBody2D.velocity.y <= -_settings.VelocityForApplyRotation || playerRigidBody2D.velocity.y >= _settings.VelocityForApplyRotation))
+                                _playerStates = states.spin;
+                            else if (_isJumped)
+                                _playerStates = states.jump;
 
-                    }
-                    break;
-                case movingType.fly:
-                    break;
-                default:
-                    break;
+                        }
+                        break;
+                    case movingType.fly:
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         void FixedUpdate()
@@ -169,9 +171,9 @@ namespace OutcoreInternetAdventure.Player
             float num = Mathf.Abs(playerRigidBody2D.velocity.y * 0.75f);
             float max = ((playerRigidBody2D.velocity.y > 0f) ? (_settings.MaxUpwardsGravity * _settings.MaxGravityScale) : _settings.MaxDownwardsGravity);
             playerRigidBody2D.gravityScale = Mathf.Clamp(num * _settings.DownGravityScale, _settings.MinGravityScale, max);
-            Move(MovingVector);
+            if (_canMove)
+                Move(MovingVector);
         }
-
         void WalkMove(Vector2 _movingVector)
         {
             if (!(events.dasher == null) && events.dasher.isDashing)
@@ -224,72 +226,80 @@ namespace OutcoreInternetAdventure.Player
         }
         void SwitchState()
         {
-            switch (_playerStates)
-            {
-                case states.idle:
-                    playerAnimator.Play("stand");
-                    break;
+            if (_canMove)
+                switch (_playerStates)
+                {
+                    case states.idle:
+                        playerAnimator.Play("stand");
+                        break;
 
-                case states.run:
-                    playerAnimator.Play("Run");
-                    break;
+                    case states.run:
+                        playerAnimator.Play("Run");
+                        break;
 
-                case states.spin:
-                    playerAnimator.Play("Spin");
-                    break;
+                    case states.spin:
+                        playerAnimator.Play("Spin");
+                        break;
 
-                case states.jump:
-                    playerAnimator.Play("Jump");
-                    break;
+                    case states.jump:
+                        playerAnimator.Play("Jump");
+                        break;
 
-                case states.fly_idle:
-                    playerAnimator.Play("Fly idle");
-                    break;
+                    case states.fly_idle:
+                        playerAnimator.Play("Fly idle");
+                        break;
 
-                case states.flying:
-                    playerAnimator.Play("Fly");
-                    break;
+                    case states.flying:
+                        playerAnimator.Play("Fly");
+                        break;
 
 
-            }
+                }
 
         }
         void Jump(float _jumpForce)
         {
-            _onGround = false;
-            _canJump = false;
-            _isJumped = true;
-            velocity.y = _jumpForce;
-            playerRigidBody2D.velocity = velocity;
-            onPlayerJumpEvent?.Invoke();
-            if (_setPlayerParentOnLand && !_onGround)
-                player.transform.parent = null;
+            if (_jumpAbility && _canMove)
+            {
+                _onGround = false;
+                canJump = false;
+                _isJumped = true;
+                velocity.y = _jumpForce;
+                playerRigidBody2D.velocity = velocity;
+                onPlayerJumpEvent?.Invoke();
+                if (_setPlayerParentOnLand && !_onGround)
+                    player.transform.parent = null;
+            }
         }
         void RotatePlayerSprite()
         {
             float z = _settings.RotationSpeed * (0f - playerRigidBody2D.velocity.x) * Time.timeScale;
             rotateTransform.transform.Rotate(new Vector3(0f, 0f, z));
         }
-
         public void Jump()
         {
-            Jump(_settings.JumpForce);
+            if (_canMove && _jumpAbility)
+                Jump(_settings.JumpForce);
         }
         public void Move(Vector2 _movingVector)
         {
+
             switch (PlayerMovingType)
             {
                 case movingType.walk:
-                    WalkMove(_movingVector);
-                    if (!OnGround)
-                        RotatePlayerSprite();
+                    if (_walkAbility)
+                    {
+                        WalkMove(_movingVector);
+                        if (!OnGround)
+                            RotatePlayerSprite();
+                    }
                     break;
                 case movingType.fly:
-                    FlyMove(_movingVector);
+                    if (_flyAbility)
+                        FlyMove(_movingVector);
                     break;
             }
         }
-
         public void TrySwitchFlyState()
         {
             if (FlyAbility)
@@ -304,6 +314,14 @@ namespace OutcoreInternetAdventure.Player
                 _playerMovingType = movingType.walk;
             }
             _isFlying = PlayerMovingType != movingType.walk;
+        }
+        public void BlockMovement()
+        {
+            _canMove = false;
+        }
+        public void UnblockMovement()
+        {
+            _canMove = true;
         }
         #endregion
     }

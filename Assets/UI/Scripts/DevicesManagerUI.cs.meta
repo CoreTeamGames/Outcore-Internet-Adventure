@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 442324c8c520e6a45a3d3cfc2f2e4203
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _uiSettings: {fileID: 11400000, guid: af1e15f597679f94cb94312eb389d0d1, type: 2}
+  - _panelImage: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
 
 public interface IInteractor
-{ void StartEvent(); }
+{
+    bool CanInteract { get; }
+    void StartEvent();
+}

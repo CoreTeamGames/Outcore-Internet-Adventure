@@ -219,9 +219,9 @@ namespace OutcoreInternetAdventure.Player.Dash
         {
             if (numberOfDashesLeft > 0 && _enableDash)
             {
+                numberOfDashesLeft--;
                 onPlayerStartDashingEvent?.Invoke();
                 isDashing = true;
-                numberOfDashesLeft--;
                 onDash?.Invoke();
                 _dashTrailRenderer.CreateTrail();
                 DashPoint dashPoint = new DashPoint

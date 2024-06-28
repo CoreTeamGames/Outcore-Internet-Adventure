@@ -84,6 +84,7 @@ public class RebindindingSettings : MonoBehaviour
         string _MapName;
         string _actionName;
         string _allBinds;
+        string _path;
         foreach (var bind in _binds)
         {
             if (bind != "")
@@ -91,6 +92,7 @@ public class RebindindingSettings : MonoBehaviour
                 _MapName = bind.Split(':')[0].Split('/')[0];
                 _actionName = bind.Split(':')[0].Split('/')[1];
                 _allBinds = bind.Split(':')[1];
+
                 foreach (var map in _input.actions.actionMaps)
                 {
                     if (map.name == _MapName)
@@ -98,20 +100,22 @@ public class RebindindingSettings : MonoBehaviour
                         if (map.FindAction(_actionName) != null)
                         {
                             InputAction action = map.FindAction(_actionName);
-                            if (_allBinds.Contains(","))
+                            if (_allBinds.Contains(";"))
                             {
-                                string[] _bindings = _allBinds.Split(',');
+                                string[] _bindings = _allBinds.Split(';');
                                 for (int i = 0; i < action.bindings.Count; i++)
                                 {
-                                    if (_bindings[i].ToLower().Contains("vector"))
+                                    _path = _bindings[i].Split(',')[1];
+                                    if (_path.ToLower().Contains("vector"))
                                         continue;
                                     else
-                                    action.ApplyBindingOverride(i, _bindings[i]);
+                                        action.ApplyBindingOverride(_bindings[i].Split(',')[0], path: _path);
                                 }
                             }
                             else
                             {
-                                action.ApplyBindingOverride(_allBinds);
+                                _path = _allBinds.Split(',')[1];
+                                action.ApplyBindingOverride(_allBinds.Split(',')[0], path: _path);
                             }
                         }
                     }
@@ -134,24 +138,13 @@ public class RebindindingSettings : MonoBehaviour
                 {
                     foreach (var binding in action.bindings)
                     {
-                        if (binding.effectivePath != binding.path)
-                        {
-                            _bindings += binding.effectivePath + ',';
-                        }
-                        //else if (binding.overridePath == binding.path)
-                        //{
-                        //    _bindings += binding.overridePath + ',';
-                        //}
-                        else
-                        {
-                            _bindings += binding.path + ',';
-                        }
+                        _bindings += binding.effectivePath + ',' + binding.path + ';';
                     }
-                    _allBinds.Add($"{action.actionMap.name}/{action.name}:{_bindings.TrimEnd(',')}");
+                    _allBinds.Add($"{action.actionMap.name}/{action.name}:{_bindings.TrimEnd(';')}");
                 }
                 else
                 {
-                    _allBinds.Add($"{action.actionMap.name}/{action.name}:{action.bindings[0]}");
+                    _allBinds.Add($"{action.actionMap.name}/{action.name}:{action.bindings[0].effectivePath},{action.bindings[0].path}");
                 }
             }
         }

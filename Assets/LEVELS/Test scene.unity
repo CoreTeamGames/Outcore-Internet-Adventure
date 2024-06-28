@@ -975,6 +975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: Dash
   _fileName: MainMenu
+  variables: []
 --- !u!114 &169733583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,6 +1242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: entertext
   _fileName: pausemenu
+  variables: []
 --- !u!1 &254807836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: 3DSound
   _fileName: MainMenu
+  variables: []
 --- !u!114 &281068239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3065,6 +3068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isOn: 0
+  _canInteract: 1
   _onEnable:
     m_PersistentCalls:
       m_Calls:
@@ -6894,6 +6898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: SkipOutput
   _fileName: MainMenu
+  variables: []
 --- !u!114 &541639309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7192,7 +7197,7 @@ GameObject:
   - component: {fileID: 556078141}
   m_Layer: 8
   m_Name: Input
-  m_TagString: PlayerComponent
+  m_TagString: PlayerInput
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7223,9 +7228,9 @@ MonoBehaviour:
   _playerStates: 0
   _playerMovingType: 0
   _flyAbility: 0
-  _WalkAbility: 1
+  _walkAbility: 1
   _jumpAbility: 1
-  _canJump: 1
+  canJump: 1
   _onGround: 1
   _stretcher: {fileID: 1007249726}
 --- !u!114 &556078141
@@ -7267,7 +7272,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Mouse Keyboard
   m_DefaultActionMap: Main
   m_SplitScreenIndex: -1
@@ -7338,6 +7343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: Jump
   _fileName: MainMenu
+  variables: []
 --- !u!114 &559651500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7637,6 +7643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: KeyboardXMouse
   _fileName: MainMenu
+  variables: []
 --- !u!114 &604940107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7785,6 +7792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: MVolume
   _fileName: MainMenu
+  variables: []
 --- !u!114 &665697954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8117,7 +8125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725720729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.008940697, y: 2.9294446, z: -10}
+  m_LocalPosition: {x: 0.008939743, y: 2.929337, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1421870204}
@@ -10222,6 +10230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: "Other\u0421ontrols"
   _fileName: MainMenu
+  variables: []
 --- !u!114 &968110231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10898,6 +10907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7f7e2f0825f4d4cbd9beb05bbf6302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  events: {fileID: 0}
   _uISettings: {fileID: 11400000, guid: af1e15f597679f94cb94312eb389d0d1, type: 2}
   _localizationService: {fileID: 1626252598}
   _leftNameText: {fileID: 1928785596}
@@ -73668,6 +73678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: Interact
   _fileName: MainMenu
+  variables: []
 --- !u!114 &1310092534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73959,6 +73970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: CVVolume
   _fileName: MainMenu
+  variables: []
 --- !u!222 &1325752019
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -74107,6 +74119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: SFXVolume
   _fileName: MainMenu
+  variables: []
 --- !u!222 &1331237112
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -74801,7 +74814,7 @@ MonoBehaviour:
   _menu: {fileID: 1351511636}
   _input: {fileID: 556078142}
   _binds: []
-  _system: {fileID: 0}
+  _system: {fileID: 1847826326}
 --- !u!114 &1363729139 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7309320029764400502, guid: df87851af57609b48a6fd271e2a70b0b,
@@ -75413,7 +75426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421870203}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.008940697, y: -0.92944455, z: 0}
+  m_LocalPosition: {x: -0.008939743, y: -0.929337, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 953286480}
@@ -75722,6 +75735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: Particles
   _fileName: MainMenu
+  variables: []
 --- !u!222 &1440616444
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -78127,6 +78141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: entername
   _fileName: pausemenu
+  variables: []
 --- !u!114 &1626252598 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8196430486678997856, guid: 724bbf93516af1d489904b4e02ef260c,
@@ -80056,7 +80071,7 @@ MonoBehaviour:
   health: {fileID: 1751823154}
   input: {fileID: 556078140}
   interactor: {fileID: 1076273165}
-  dialogueWindow: {fileID: 0}
+  dialogueWindow: {fileID: 1013059523}
 --- !u!114 &1906888313 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5761955922549519847, guid: 8cea1d90a091ba04eb08df960b64a2a6,
@@ -80989,6 +81004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: Gamepad
   _fileName: MainMenu
+  variables: []
 --- !u!114 &2053455654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81233,9 +81249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97cc184b56d636d46b73987d05d5a07d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speaked: 0
-  canSpeakAgain: 0
-  canMovingOnDialogue: 0
+  _speaked: 0
+  _canSpeakAgain: 0
+  _canMovingOnDialogue: 0
   dialogueForStart: Dialogue
 --- !u!1 &2103711019
 GameObject:
@@ -81388,6 +81404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineId: MovementSetup
   _fileName: MainMenu
+  variables: []
 --- !u!114 &2125721881
 MonoBehaviour:
   m_ObjectHideFlags: 0

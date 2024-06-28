@@ -51,16 +51,19 @@ public class PlayerInteractorHint : MonoBehaviour
     }
     public void ShowHint()
     {
-        _interactorKeyText.text = InputControlPath.ToHumanReadableString(_reference.action.bindings[0].effectivePath,InputControlPath.HumanReadableStringOptions.OmitDevice);
-        _interactorHint.transform.parent = _playerInteractor.Collision.transform;
-        _interactorHint.transform.localPosition = new Vector3(_offset.x, _offset.y, _firstPosition.z);
-        foreach (var text in _texts)
+        if (_playerInteractor.Interactor.CanInteract)
         {
-            text.DOFade(1, _duration);
-        }
-        foreach (var image in _images)
-        {
-            image.DOFade(1, _duration);
+            _interactorKeyText.text = InputControlPath.ToHumanReadableString(_reference.action.bindings[0].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+            _interactorHint.transform.parent = _playerInteractor.Collision.transform;
+            _interactorHint.transform.localPosition = new Vector3(_offset.x, _offset.y, _firstPosition.z);
+            foreach (var text in _texts)
+            {
+                text.DOFade(1, _duration);
+            }
+            foreach (var image in _images)
+            {
+                image.DOFade(1, _duration);
+            }
         }
     }
 

@@ -18,6 +18,8 @@ namespace OutcoreInternetAdventure.Player
         public PlayerInput input;
         public PlayerInteractor interactor;
         public DialogueSystem.DialogueGameWindow dialogueWindow;
+
+        bool _canFly;
         #endregion
 
         #region Code
@@ -30,6 +32,7 @@ namespace OutcoreInternetAdventure.Player
             health.events = this;
             input.events = this;
             interactor.events = this;
+            dialogueWindow.events = this;
 
             SubscribeToEvents();
         }
@@ -69,15 +72,15 @@ namespace OutcoreInternetAdventure.Player
             health.PlayerHealthDamageEvent += PlayerHealthDamage;
             health.PlayerBlockDamageEvent += PlayerBlockDamage;
 
-            //dialogueWindow.onDialogueStartsEvent += onDialogueStarts;
-            //dialogueWindow.onNewLineStartsWritingEvent += onNewLineStartsWriting;
-            //dialogueWindow.onPlayerSkipWriteEvent += onPlayerSkipWrite;
-            //dialogueWindow.onDialogueEndEvent += onDialogueEnd;
+            dialogueWindow.onDialogueStartsEvent += onDialogueStarts;
+            dialogueWindow.onNewLineStartsWritingEvent += onNewLineStartsWriting;
+            dialogueWindow.onPlayerSkipWriteEvent += onPlayerSkipWrite;
+            dialogueWindow.onDialogueEndEvent += onDialogueEnd;
 
         }
         #region Events methods
         private void onPlayerStartDashing() { audio.PlayCilp(audio.slash); }
-        private void onPlayerDashing() { input._canJump = false; }
+        private void onPlayerDashing() { input.canJump = false; }
         private void OnPlayerDashed()
         {
             if (input.OnGround)
@@ -105,10 +108,10 @@ namespace OutcoreInternetAdventure.Player
         private void PlayerSubHealth() { }
         private void PlayerHealthDamage() { }
         private void PlayerBlockDamage() { }
-        private void onDialogueStarts() { }
+        private void onDialogueStarts(bool canMove = false) { if (!canMove) input.BlockMovement();  }
         private void onNewLineStartsWriting() { }
         private void onPlayerSkipWrite() { }
-        private void onDialogueEnd() { }
+        private void onDialogueEnd() { input.UnblockMovement(); }
 
         #endregion
         #endregion

@@ -9,6 +9,7 @@ namespace OutcoreInternetAdventure.DialogueSystem
 {
     public class DialogueGameWindow : MonoBehaviour
     {
+        [HideInInspector] public Player.PlayerEvents events;
         [SerializeField] UI.UISettings _uISettings;
         [SerializeField] LocalizationService _localizationService;
         [SerializeField] TMP_Text _leftNameText;
@@ -30,6 +31,17 @@ namespace OutcoreInternetAdventure.DialogueSystem
         bool _dialogueRunning = false;
         string _dialogueName = "Dialogue";
         string _localizedLine;
+
+        public delegate void OnDialogueStarts(bool canMove = false);
+        public delegate void OnNewLineStartsWriting();
+        public delegate void OnPlayerSkipWrite();
+        public delegate void OnDialogueEnd();
+
+        public OnDialogueStarts onDialogueStartsEvent;
+        public OnNewLineStartsWriting onNewLineStartsWritingEvent;
+        public OnPlayerSkipWrite onPlayerSkipWriteEvent;
+        public OnDialogueEnd onDialogueEndEvent;
+
 
         public void TryDialogueStep()
         {
@@ -70,11 +82,12 @@ namespace OutcoreInternetAdventure.DialogueSystem
                                 _text.text += $"\n{_localizedLine[i]}";
                         }
                     }
+                    onPlayerSkipWriteEvent?.Invoke();
                 }
             }
         }
 
-        public void StartDialogue(string dialogueName)
+        public void StartDialogue(string dialogueName, bool canMove = false)
         {
             if (!_dialogueRunning)
             {
@@ -85,6 +98,7 @@ namespace OutcoreInternetAdventure.DialogueSystem
                     _dialogueName = dialogueName;
                     DialogueStep();
                 });
+                onDialogueStartsEvent?.Invoke(canMove);
             }
         }
         public void EndDialogue()
@@ -107,9 +121,10 @@ namespace OutcoreInternetAdventure.DialogueSystem
                         _leftNameText.text = "";
                         _rightNameText.text = "";
                         _leftCharacterAnimator.sprite = null;
-                    _rightCharacterAnimator.sprite = null;
+                        _rightCharacterAnimator.sprite = null;
                     });
                 });
+                onDialogueEndEvent?.Invoke();
             }
         }
         void DialogueStep()
@@ -149,6 +164,7 @@ namespace OutcoreInternetAdventure.DialogueSystem
             _currentMessage.transform.DOLocalMoveY(_currentMessage.GetComponent<RectTransform>().rect.height + _text.margin.y, 0.5f);
             _text.text = "";
             StartCoroutine(OutLine(_localizedLine, _message.delay, null, _currentMessage.GetComponent<TMP_Text>()));
+            onNewLineStartsWritingEvent?.Invoke();
         }
 
         IEnumerator OutLine(string line, float delay, AudioClip voice, TMP_Text text)
