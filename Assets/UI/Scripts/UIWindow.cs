@@ -26,27 +26,41 @@ namespace OutcoreInternetAdventure.UI
         #endregion
         #endregion
 
+        #region  Properties
+        public UISettings UISettings { get => _uiSettings; }
+        #endregion
+
         #region Code
         public void Start()
         {
             _eventSystem = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<EventSystem>();
             if (_eventSystem == null) Debug.LogError($"Can't find EventSystem! Check tag {'"'}EventSystem{'"'} on GameObject with EventSystem component!");
-            _panelImage.color = _uiSettings.PanelColor;
+            if (_panelImage)
+                _panelImage.color = _uiSettings.PanelColor;
             _canvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        public void DeselectButton()
+        {
+            _eventSystem.SetSelectedGameObject(_eventSystem.gameObject);
         }
 
         public void RememberSelectedGameObject()
         {
             if (_eventSystem != null)
-                _rememberedGameObject = !_eventSystem.currentSelectedGameObject.transform.parent.name.Contains("Device")?_eventSystem.currentSelectedGameObject: _rememberedGameObject;
+                _rememberedGameObject = !_eventSystem.currentSelectedGameObject.transform.parent.name.Contains("Device") ? _eventSystem.currentSelectedGameObject : _rememberedGameObject;
             else
                 return;
         }
 
         public void SelectRememberedGameObject()
         {
-            if (_eventSystem != null)
+            if (_eventSystem != null && _rememberedGameObject != null)
                 _eventSystem.SetSelectedGameObject(_rememberedGameObject);
+            else if (_rememberedGameObject == null)
+            {
+                DeselectButton();
+            }
             else
                 return;
         }
@@ -57,7 +71,7 @@ namespace OutcoreInternetAdventure.UI
         {
             _onMenuStartsShow?.Invoke();
             _canvasGroup.interactable = true;
-            _canvasGroup.DOFade(1, _uiSettings.MenuShowFadingDuration).OnComplete(() =>
+            _canvasGroup.DOFade(1, _uiSettings.MenuShowFadingDuration).SetUpdate(true).OnComplete(() =>
             {
                 _onMenuShows?.Invoke();
             });
@@ -69,7 +83,7 @@ namespace OutcoreInternetAdventure.UI
         {
             _onMenuStartsHide?.Invoke();
             _canvasGroup.interactable = false;
-            _canvasGroup.DOFade(0, _uiSettings.MenuShowFadingDuration).OnComplete(() =>
+            _canvasGroup.DOFade(0, _uiSettings.MenuShowFadingDuration).SetUpdate(true).OnComplete(() =>
             {
                 _onMenuHides?.Invoke();
             });

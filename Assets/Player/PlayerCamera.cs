@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Cinemachine;
 
 namespace OutcoreInternetAdventure.Player
 {
@@ -7,8 +8,12 @@ namespace OutcoreInternetAdventure.Player
         [HideInInspector] public PlayerEvents events;
 
         [SerializeField] bool moveX, moveY;
-        [SerializeField] GameObject objectToFollow;
         [SerializeField] float speed = 2.0f;
+        [SerializeField] float _standardCameraSize = 5f;
+        [SerializeField] float _smallCameraSize = 2.0f;
+        [SerializeField] float _largeCameraSize = 10f;
+        [SerializeField] CinemachineVirtualCamera _virtualCamera;
+        [SerializeField] GameObject objectToFollow;
 
         public void Awake() => gameObject.transform.position = objectToFollow.transform.position;
 
@@ -23,6 +28,23 @@ namespace OutcoreInternetAdventure.Player
                 position.x = Mathf.Lerp(this.transform.position.x, objectToFollow.transform.position.x, interpolation);
 
             this.transform.position = position;
+        }
+
+        public void SetCameraSizeLarge()
+        {
+            SetCameraSize(_largeCameraSize);
+        }
+        public void SetCameraSizeStandard()
+        {
+            SetCameraSize(_standardCameraSize);
+        }
+        public void SetCameraSizeSmall()
+        {
+            SetCameraSize(_smallCameraSize);
+        }
+        public void SetCameraSize(float size)
+        {
+            _virtualCamera.m_Lens.OrthographicSize = size;
         }
     }
 }

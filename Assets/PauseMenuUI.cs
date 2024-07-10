@@ -5,18 +5,17 @@ using DG.Tweening;
 
 namespace OutcoreInternetAdventure.UI
 {
-    public class PauseMenuUI : MonoBehaviour
+    public class PauseMenuUI : UIWindow
     {
         public bool IsPaused { get; private set; }
-
-        [SerializeField] UISettings uiSettings;
-        [SerializeField] UnityEvent _onMenuShow;
-        [SerializeField] UnityEvent _onMenuHide;
-        [SerializeField] CanvasGroup _panel;
-        [SerializeField] GameObject _pauseMenuObject;
         private float _currentGameTime;
 
         public void OnDestroy()
+        {
+            TimeService.SetTimeAsStandard();
+        }
+
+        public void OnDisable()
         {
             TimeService.SetTimeAsStandard();
         }
@@ -30,40 +29,16 @@ namespace OutcoreInternetAdventure.UI
             IsPaused = setPause;
             if (setPause)
             {
-            _currentGameTime = Time.timeScale;
-                TimeService.ChangeTime(0, uiSettings.MenuShowFadingDuration);
-                ShowMenu();
+                _currentGameTime = Time.timeScale;
+                TimeService.ChangeTime(0, UISettings.MenuShowFadingDuration);
+                ShowWindow();
             }
             else
             {
-                TimeService.ChangeTime(_currentGameTime, uiSettings.MenuShowFadingDuration);
-                HideMenu();
+                TimeService.ChangeTime(_currentGameTime, UISettings.MenuShowFadingDuration);
+                HideWindow();
             }
         }
-        public void ShowMenu()
-        {
-            _pauseMenuObject.SetActive(true);
-            DOTween.Kill(_panel);
-            _panel.DOFade(1, uiSettings.MenuShowFadingDuration).SetUpdate(true).OnComplete(OnMenuShow);
-        }
-       
-        public void HideMenu()
-        {
-            DOTween.Complete(_panel);
-            _panel.DOFade(0, uiSettings.MenuShowFadingDuration).SetUpdate(true).OnComplete(OnMenuHide);
-        }
-
-        void OnMenuHide()
-        {
-            _onMenuHide?.Invoke();
-            _pauseMenuObject.SetActive(false);
-        }
-        void OnMenuShow()
-        {
-            _onMenuShow?.Invoke();
-            
-        }
-
-       
+         
     }
 }

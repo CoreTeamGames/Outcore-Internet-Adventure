@@ -19,6 +19,8 @@ TagManager:
   - DiscordReportSender
   - UIAudioSource
   - MenuCanvas
+  - PlayerInput
+  - Console
   layers:
   - Default
   - TransparentFX

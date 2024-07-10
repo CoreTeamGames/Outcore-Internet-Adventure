@@ -14,6 +14,7 @@ namespace OutcoreInternetAdventure.Player
         PlayerInteractor _interactor;
         DialogueSystem.DialogueGameWindow _dialogueWindow;
         Dash.Dasher _dasher;
+        InGameConsole _console;
         [SerializeField] UI.PauseMenuUI _menu;
         bool _isPaused { get { return _menu.IsPaused; } }
 
@@ -25,6 +26,8 @@ namespace OutcoreInternetAdventure.Player
             if (_input.player.GetComponentInChildren<DialogueSystem.DialogueGameWindow>() != null)
                 _dialogueWindow = _input.player.GetComponentInChildren<DialogueSystem.DialogueGameWindow>();
             _interactor = _input.player.GetComponentInChildren<PlayerInteractor>();
+            if (GameObject.FindGameObjectWithTag("Console") != null)
+            _console = GameObject.FindGameObjectWithTag("Console").GetComponent<InGameConsole>();
         }
         public void OnMove(InputValue _value)
         {
@@ -69,6 +72,13 @@ namespace OutcoreInternetAdventure.Player
         public void OnInteract()
         {
             _interactor.TryInteract();
+        }
+        public void OnConsole()
+        {
+            if (_console == null)
+            return;
+
+            _console.OpenConsole();
         }
     }
 }
