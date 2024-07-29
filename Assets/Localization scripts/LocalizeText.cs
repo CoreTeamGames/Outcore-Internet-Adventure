@@ -44,11 +44,11 @@ public class LocalizeText : MonoBehaviour
             _text.text = _localizedText;
         }
         else
-            _text.text = $"{_textLocalizator.CurrentLanguage.langName},{_textLocalizator.CurrentLanguage.langCode}, HAS NO LOCALIZATION KEY: {_lineId}! FILE NAME IS: {_fileName}";
+            _text.text = $"{_textLocalizator.CurrentLanguage.LangName},{_textLocalizator.CurrentLanguage.LangCode}, HAS NO LOCALIZATION KEY: {_lineId}! FILE NAME IS: {_fileName}";
     }
 
     public string ReturnLocalizedLine(string fileName, string lineKey)
     {
-        return _textLocalizator.GetLocalizedLine(_textLocalizator.CurrentLanguage.path, fileName, lineKey);
+        return _textLocalizator.GetLocalizedLine(_textLocalizator.CurrentLanguage.Path, fileName, lineKey);
     }
 }

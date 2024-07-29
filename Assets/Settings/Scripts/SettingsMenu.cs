@@ -60,11 +60,11 @@ namespace OutcoreInternetAdventure.Settings
             _CVVSlider.value = _settings.CharacterVolume;
             _brightnessSlider.value = _settings.Brightness;
             Screen.brightness = _settings.Brightness;
-            foreach (var language in _localizationService.langs)
+            foreach (var language in _localizationService.Langs)
             {
-                if (language.langCode.ToLower() == _settings.LangLocale.ToLower())
+                if (language.LangCode.ToLower() == _settings.LangLocale.ToLower())
                 {
-                    _localizationService._currentLanguage = language;
+                    _localizationService.ChangeLanguage(language);
                 }
             }
         }
@@ -80,7 +80,7 @@ namespace OutcoreInternetAdventure.Settings
         public void SaveSettings()
         {
             Debug.Log("Save Settings Menu");
-            _settings = new Settings(_sfxSlider.value, _CVVSlider.value, _musicSlider.value, _3DSoundToggle.isOn, _localizationService.CurrentLanguage.langCode, _brightnessSlider.value, _rebindindingSettings.Binds);
+            _settings = new Settings(_sfxSlider.value, _CVVSlider.value, _musicSlider.value, _3DSoundToggle.isOn, _localizationService.CurrentLanguage.LangCode, _brightnessSlider.value, _rebindindingSettings.Binds);
             SettingsService.SaveSettings(_settings);
         }
 

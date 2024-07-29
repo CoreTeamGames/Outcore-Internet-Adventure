@@ -110,8 +110,8 @@ namespace OutcoreInternetAdventure.UI
         }
         void UnlockAchievement(Achievements.Achievement achievement)
         {
-            _titleText.text = _localizationService.GetLocalizedLine(_localizationService.CurrentLanguage.path, _achievementsFileName, achievement.TitleKey);
-            _descriptionText.text = _localizationService.GetLocalizedLine(_localizationService.CurrentLanguage.path, _achievementsFileName, achievement.DescriptionKey);
+            _titleText.text = _localizationService.GetLocalizedLine(_localizationService.CurrentLanguage.Path, _achievementsFileName, achievement.TitleKey);
+            _descriptionText.text = _localizationService.GetLocalizedLine(_localizationService.CurrentLanguage.Path, _achievementsFileName, achievement.DescriptionKey);
             _icon.sprite = achievement.AchievementIcon;
             if (achievement.IsSecret)
             {

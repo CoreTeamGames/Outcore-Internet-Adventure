@@ -1,71 +1,80 @@
-﻿using System;
-using UnityEngine;
-using System.Collections.Generic;
-using System.IO;
-using NaughtyAttributes;
-using CsvHelper;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Globalization;
+using NaughtyAttributes;
+using UnityEngine;
+using System.IO;
+using CsvHelper;
+using System;
 
 public class LocalizationService : MonoBehaviour
 {
+    #region Classes
     [Serializable]
     public class Language
     {
-        public Language(string langCode, string langName, bool isRTL)
+        [SerializeField] string _langCode;
+        [SerializeField] string _langName;
+        [SerializeField] bool _isRTL;
+        [SerializeField] string _path;
+
+        public string LangCode { get => _langCode; }
+        public string LangName { get => _langName; }
+        public bool IsRTL { get => _isRTL; }
+        public string Path { get => _path; }
+
+        public Language(string langCode, string langName, bool isRTL, string path)
         {
-            this.langCode = langCode;
-            this.langName = langName;
-            this.isRTL = isRTL;
-
+            _langCode = langCode;
+            _langName = langName;
+            _isRTL = isRTL;
+            _path = path;
         }
-
-        public string langCode;
-
-        public string langName;
-
-        public bool isRTL;
-        public string path;
-
     }
 
     [Serializable]
     public class CharacterName
     {
-        public string langCode { get; set; }
-        public string name { get; set; }
+        public string LangCode { get; set; }
+        public string Name { get; set; }
     }
 
     [Serializable]
     public class DialogueText
     {
+        [SerializeField] string _lineKey = "";
+        [SerializeField] string _text = "";
+
+        public string LineKey { get => _lineKey; }
+        public string Text { get => _text; }
+
         public DialogueText(string lineKey, string text)
         {
-            this.lineKey = lineKey;
-            this.text = text;
+            _lineKey = lineKey;
+            _text = text;
         }
-
-
-        public string lineKey { get; set; } = "";
-        public string text { get; set; } = "";
-
     }
+    #endregion
 
-    public List<Language> langs;
-    public Language CurrentLanguage { get { return _currentLanguage; } }
-    public Language _currentLanguage;
-
-    string _pathToLocalizationFolder;
-    string[] _Directories;
+    #region Variables
+    [SerializeField] List<Language> _langs;
     [SerializeField] string _fileExtension = "OIALocalize";
-    public string FileExtension { get { return _fileExtension; } }
+    [SerializeField] Language _currentLanguage;
+    string _pathToLocalizationFolder;
+    string[] _directories;
+    #endregion
+
+    #region Properties
+    public List<Language> Langs { get => _langs; }
+    public string FileExtension { get => _fileExtension; }
+    public Language CurrentLanguage { get => _currentLanguage;  }
+    #endregion
 
     public delegate void onlanguageSelected();
     public onlanguageSelected onlanguageSelectedEvent;
 
     public void Awake() => AddLangs();
 
-    public void SelectLanguage(Language language)
+    public void ChangeLanguage(Language language)
     {
         _currentLanguage = language;
         onlanguageSelectedEvent?.Invoke();
@@ -75,11 +84,11 @@ public class LocalizationService : MonoBehaviour
     public void AddLangs()
     {
         _currentLanguage = null;
-        langs = new List<Language>();
+        _langs = new List<Language>();
         _pathToLocalizationFolder = $"{Application.streamingAssetsPath}\\Localization";
-        _Directories = AddAllDirectories(_pathToLocalizationFolder);
-        langs = SearchAllLanguages(_Directories);
-        
+        _directories = AddAllDirectories(_pathToLocalizationFolder);
+        _langs = SearchAllLanguages(_directories);
+
         if (_currentLanguage == null)
         {
             if (SearchlanguagebyID(CultureInfo.CurrentCulture.ToString().ToLower()) != null)
@@ -95,7 +104,7 @@ public class LocalizationService : MonoBehaviour
     }
     public string GetLocalizedLine(string fileName, string lineID)
     {
-        return GetLocalizedLine(CurrentLanguage.path, fileName, lineID);
+        return GetLocalizedLine(CurrentLanguage.Path, fileName, lineID);
     }
 
     public string GetLocalizedLine(string path, string fileName, string lineID)
@@ -113,15 +122,15 @@ public class LocalizationService : MonoBehaviour
                 {
                     lineID = lineID.ToLower();
                     _csvReader.Read();
-                    
+
                     _csvReader.ReadHeader();
                     string _localizedLine = null;
                     var records = _csvReader.GetRecords<DialogueText>();
                     foreach (var record in records)
                     {
-                        if (lineID == record.lineKey.ToLower())
+                        if (lineID == record.LineKey.ToLower())
                         {
-                            _localizedLine = record.text.ToString().TrimStart(' ').TrimEnd(' ');
+                            _localizedLine = record.Text.ToString().TrimStart(' ').TrimEnd(' ');
                             break;
                         }
                     }
@@ -138,7 +147,7 @@ public class LocalizationService : MonoBehaviour
 
     public bool LineExist(string fileName, string lineID)
     {
-        if (GetLocalizedLine(CurrentLanguage.path, fileName, lineID) != null)
+        if (GetLocalizedLine(CurrentLanguage.Path, fileName, lineID) != "")
             return true;
         else
             return false;
@@ -148,11 +157,11 @@ public class LocalizationService : MonoBehaviour
     {
         Language _lang = null;
         _languageId = _languageId.ToLower();
-        for (int i = 0; i < langs.Count; i++)
+        for (int i = 0; i < _langs.Count; i++)
         {
-            if (langs[i].langCode.ToLower() == _languageId)
+            if (_langs[i].LangCode.ToLower() == _languageId)
             {
-                _lang = langs[i];
+                _lang = _langs[i];
                 break;
 
             }
@@ -185,8 +194,7 @@ public class LocalizationService : MonoBehaviour
                         _csvReader.GetRecord<Language>();
                         _csvReader.ReadHeader();
                         var _temp = _csvReader.GetRecord<Language>();
-                        Language _lang = new Language(TrimBySpace(_temp.langCode), TrimBySpace(_temp.langName), _temp.isRTL);
-                        _lang.path = _path[i];
+                        Language _lang = new Language(TrimBySpace(_temp.LangCode), TrimBySpace(_temp.LangName), _temp.IsRTL, _path[i]);
                         _languages.Add(_lang);
                     }
                 }
@@ -202,4 +210,3 @@ public class LocalizationService : MonoBehaviour
     string TrimBySpace(string _inputString) { return _inputString.TrimStart(' ').TrimEnd(' '); }
 
 }
-

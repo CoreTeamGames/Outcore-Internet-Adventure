@@ -37,13 +37,13 @@ public class LanguageSelector : MonoBehaviour
                 Destroy(_buttonTemplate.transform.parent.GetChild(i).gameObject);
         }
         GameObject _currentButton = _buttonTemplate;
-        foreach (var language in _localizationService.langs)
+        foreach (var language in _localizationService.Langs)
         {
             GameObject _button = Instantiate(_buttonTemplate, _buttonTemplate.transform.position, _buttonTemplate.transform.rotation, _buttonTemplate.gameObject.transform.parent);
             _buttons.Add(_button.GetComponent<Button>());
             _button.GetComponent<RectTransform>().localPosition = _currentButton.transform.localPosition - Vector3.up * (_currentButton.GetComponent<RectTransform>().sizeDelta.y + _spacing);
-            _button.GetComponentInChildren<TMP_Text>().text = language.langName;
-            _button.GetComponent<Button>().onClick.AddListener(() => SelectLang(language.langCode));
+            _button.GetComponentInChildren<TMP_Text>().text = language.LangName;
+            _button.GetComponent<Button>().onClick.AddListener(() => SelectLang(language.LangCode));
             _currentButton = _button;
         }
         _buttonTemplate.SetActive(false);
@@ -57,11 +57,11 @@ public class LanguageSelector : MonoBehaviour
 
     public void SelectLang(string languageCode)
     {
-        foreach (var language in _localizationService.langs)
+        foreach (var language in _localizationService.Langs)
         {
-            if (languageCode.Trim().ToLower() == language.langCode.Trim().ToLower())
+            if (languageCode.Trim().ToLower() == language.LangCode.Trim().ToLower())
             {
-                _localizationService.SelectLanguage(language);
+                _localizationService.ChangeLanguage(language);
             }
         }
     }
@@ -70,9 +70,9 @@ public class LanguageSelector : MonoBehaviour
     {
         int _lang = 0;
         _languageId = _languageId.ToLower();
-        for (int i = 0; i < _localizationService.langs.Count; i++)
+        for (int i = 0; i < _localizationService.Langs.Count; i++)
         {
-            if (_localizationService.langs[i].langCode.ToLower() == _languageId)
+            if (_localizationService.Langs[i].LangCode.ToLower() == _languageId)
             {
                 _lang = i;
                 break;
