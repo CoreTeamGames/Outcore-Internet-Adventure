@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/LEVELS/C1M0/C1M0.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
