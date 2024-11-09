@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb3a4becc44354418674f0f07f650c1, type: 3}
+  m_Name: UI Settings
+  m_EditorClassIdentifier: 
+  _buttonNormalColor: {r: 0, g: 0, b: 0, a: 0}
+  _buttonDisabledColor: {r: 0, g: 0, b: 0, a: 0}
+  _buttonSelectedColor: {r: 0, g: 0, b: 0, a: 0}
+  _buttonSubmitedColor: {r: 0, g: 0, b: 0, a: 0}
+  _buttonDuration: 0
+  _buttonSelectSound: {fileID: 0}
+  _buttonSubmitSound: {fileID: 0}
+  _panelColor: {r: 0, g: 0, b: 0, a: 0}
+  _menuShowFadingDuration: 0

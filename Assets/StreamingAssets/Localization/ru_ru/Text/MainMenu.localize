@@ -1,0 +1,27 @@
+lineKey,text
+play,Играть
+JoinUs,Присоединяйтесь к нам в Discord
+MovementSetup,Настройка управления
+OtherСontrols, Другие функции
+Jump, Прыжок
+Settings, Настройки
+OpenDiscord, Открыть Discord
+Back, Назад
+Other, Другое
+Language, Язык
+Audio, Звук
+Video, Видео
+Controls, Управление
+Particles, Частицы
+Discord, Discord
+MVolume, Громкость музыки
+SFXVolume, Громкость звуков
+CVVolume, Громкость голосов персонажей
+Brightness, Яркость
+KeyboardXMouse, Клавиатура и мышь
+Gamepad, Геймпад
+SkipOutput, Пропустить вывод строки диалога
+Interact, Взаимодействие
+Dash, Рывок
+Exit, Выход
+3DSound, 3D Звук
